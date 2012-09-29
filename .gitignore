@@ -1,4 +1,9 @@
 *.log
 *.pot
 *.pyc
-local_settings.py
+*.xml
+*.iml
+*.ids
+*.db
+.name
+test.*
