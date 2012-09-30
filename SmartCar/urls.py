@@ -5,10 +5,10 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'SmartCar.views.home', name='home'),
-    # url(r'^SmartCar/', include('SmartCar.foo.urls')),
+    url(r'^$', 'SmartCar.views.index'),
+    url(r'^media/(.*)$', 'django.views.static.serve',{'document_root':'./media/'}),
 
-    # Uncomment the next line to enable the admin:
+    url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/', include(admin.site.urls)),
+
 )
