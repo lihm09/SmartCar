@@ -1,14 +1,72 @@
 {% extends "base.html" %}
 
 {% block title %}首页{% endblock %}
-
+{% block extrahead %}
+    <link rel="stylesheet" type="text/css" href="/media/css/gallery.css">
+    <script type="text/javascript" src="/media/js/modernizr.custom.53451.js"></script>
+{% endblock %}
 {% block content %}
 
+    <div class="hero-unit">
+        <h1>第七届智能车竞赛 <a class="btn btn-primary btn-large" href="/account/register">我要报名 &raquo;</a></h1>
+    </div>
 
+    <div class="row">
+        <div class="span8">
+            <br/>
+            <ul>
+                <li>
+                    <p class="lead">智能车竞赛是清华大学校二星级比赛，
+                        以全国大学生智能车邀请赛为模板，融入更多的趣味性，
+                        涵盖了智能控制、模式识别、传感技术、通信技术等多个学科，
+                        是一项多学科、多技术交叉的科技创意性比赛。</p>
+                </li>
+                <li>
+                    <p class="lead">智能车竞赛也是一项参赛门槛较低的赛事，
+                        工程物理系学生科协已独立开发出的智能车运行平台，
+                        只需要参赛者具有基础的计算机C 语言阅读和编写能力即可，
+                        智能车设计大赛越来越受到广大爱好科技同学的青睐。</p>
+                </li>
+                <li>
+                    <p class="lead">第七届清华大学智能车竞赛将于本学期拉开帷幕。
+                        本届比赛将新增<span class="text-error">直立行走的电磁组</span>的赛题，可谓趣味无穷！请到“<a href="/download">下载</a>”专区先睹为快！</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="span4">
+            <h3>主办单位：</h3>
+            <p>清华大学工程物理系</p>
+
+            <h3>承办单位：</h3>
+            <p>清华大学工程物理系学生科协</p>
+
+            <h3>协办单位：</h3>
+            <p>全国大学生智能车竞赛秘书处</p>
+
+            <h3>特别鸣谢：</h3>
+            <p>清华大学三角洲工作室</p>
+        </div>
+    </div>
+
+    <section id="dg-container" class="dg-container visible-desktop">
+        <div class="dg-wrapper">
+            <a href="#"><img class="img-rounded" src="/media/img/1.jpg" alt="image01"><div>OV7620 特写.</div></a>
+            <a href="#"><img class="img-rounded" src="/media/img/2.jpg" alt="image02"><div>厉害!</div></a>
+            <a href="#"><img class="img-rounded" src="/media/img/3.jpg" alt="image03"><div>摄像头特写</div></a>
+            <a href="#"><img class="img-rounded" src="/media/img/4.jpg" alt="image04"><div>电路板原型 I</div></a>
+        </div>
+    </section>
 
 {% endblock %}
 
 {% block extrafooter %}
-
-
+    <script src="/media/js/jquery.gallery.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('#dg-container').gallery({
+                autoplay	:	true
+            });
+        });
+    </script>
 {% endblock %}

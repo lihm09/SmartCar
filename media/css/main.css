@@ -1,6 +1,5 @@
 body{
-    background-image: url("/media/img/bg.png");
-    background-repeat: repeat;
+    font-family: Microsoft YaHei;
     text-shadow: 1.5px 1.5px 1.5px #aaa;
     padding-top: 60px;
     padding-bottom: 40px;
