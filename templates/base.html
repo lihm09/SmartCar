@@ -62,8 +62,16 @@
       </div>
   </div>
 
-
   <div class="container">
+
+      <!--[if lt IE 9]>
+      <br/ >
+      <br/ >
+      <div class="alert alert-error">
+          <p>您一定在使用较低版本的IE浏览器，建议您更换更高版本的ie或Google Chrome以及Firefox等（搜狗浏览器请开启高速模式）</p>
+      </div>
+      <![endif]-->
+
       {% block content %}{% endblock %}
 
       <hr />
@@ -88,6 +96,7 @@
   <script src="/media/js/bootstrap-collapse.js"></script>
   <script src="/media/js/bootstrap-carousel.js"></script>
   <script src="/media/js/bootstrap-typeahead.js"></script>
+
   {% block extrafooter %}{% endblock %}
 
   </body>
