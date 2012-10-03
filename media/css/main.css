@@ -1,5 +1,5 @@
 body{
-    font-family: Microsoft YaHei;
+    font-family: "微软雅黑","方正兰亭黑","文泉驿正黑";
     text-shadow: 1.5px 1.5px 1.5px #aaa;
     padding-top: 60px;
     padding-bottom: 40px;
@@ -7,4 +7,15 @@ body{
 
 .brand{
     text-shadow: none;
+}
+
+.about .span4{
+    text-align: center;
+    padding: 10px 0 10px 0;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    background-color: #eeeeee;
+    -webkit-border-radius: 6px;
+       -moz-border-radius: 6px;
+            border-radius: 6px;
 }
