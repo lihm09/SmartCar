@@ -100,3 +100,10 @@
     </div>
 
 {% endblock %}
+
+{% block extrafooter %}
+    <script type="text/javascript">
+        $('#home').removeClass('active');
+        $('#about').addClass('active');
+    </script>
+{% endblock %}

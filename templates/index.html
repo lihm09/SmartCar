@@ -48,7 +48,7 @@
             <p>清华大学三角洲工作室</p>
         </div>
     </div>
-    <section id="dg-container" class="dg-container visible-desktop">
+    <section id="dg-container" class="dg-container hidden-phone">
         <div id="gallery" class="dg-wrapper">
             <a href="#gallery"><img class="img-rounded" src="/media/img/1.jpg" alt="image01"><div>OV7620 特写.</div></a>
             <a href="#gallery"><img class="img-rounded" src="/media/img/2.jpg" alt="image02"><div>厉害!</div></a>
@@ -62,10 +62,6 @@
 {% block extrafooter %}
     <script src="/media/js/jquery.gallery.js"></script>
     <script type="text/javascript">
-        $(function() {
-            $('#dg-container').gallery({
-                autoplay	:	true
-            });
-        });
+        $('#dg-container').gallery({autoplay:true});
     </script>
 {% endblock %}
