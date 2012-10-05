@@ -19,3 +19,9 @@ body{
        -moz-border-radius: 6px;
             border-radius: 6px;
 }
+
+.about .span8{
+     padding: 10px 0 10px 0;
+     margin-bottom: 30px;
+     margin-top: 10px;
+ }
