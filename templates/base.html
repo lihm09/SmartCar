@@ -1,100 +1,104 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cn" lang="cn" encoding="UTF-8">
-  <head>
-      <title>智能车竞赛官网 : {% block title %}{% endblock %}</title>
-      <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, user-scalable=no">
-      <link rel="stylesheet" type="text/css" href="/media/css/bootstrap.css">
-      <link rel="stylesheet" type="text/css" href="/media/css/main.css">
-      <link rel="stylesheet" type="text/css" href="/media/css/bootstrap-responsive.css">
-      <!--[if lt IE 9]>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cn" lang="cn">
+<head>
+    <title>智能车竞赛官网 : {% block title %}{% endblock %}</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="/media/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/media/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/media/css/bootstrap-responsive.css">
+    <!--[if lt IE 9]>
       <script src="/media/js/html5.js"></script>
       <![endif]-->
-      {% block extrahead %}{% endblock %}
-  </head>
+    {% block extrahead %}{% endblock %}
+</head>
 
-  <body>
+<body>
 
-  <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-          <div class="container">
-              <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-              </a>
-              <a class="brand" href="/">第七届智能车竞赛</a>
-              <div class="nav-collapse collapse">
-                  <ul class="nav">
-                      <li id="home" class="active"><a href="/">首页</a></li>
-                      <li><a href="#">公告</a></li>
-                      <li><a href="#">讨论</a></li>
-                      <li><a href="#">队伍</a></li>
-					  <li id="about"><a href="/about">关于</a></li>
-                      {% if user.is_authenticated %}
-                      <li class="dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }}<b class="caret"></b></a>
-                          <ul class="dropdown-menu">
-                              <li><a href="/account/detail">修改资料</a></li>
-                              <li><a href="/account/password">修改密码</a></li>
-                          </ul>
-                      </li>
-                      {% endif %}
-                  </ul>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="/">第七届智能车竞赛</a>
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li id="home" class="active"><a href="/">首页</a></li>
+                    <li id="post"><a href="/post">公告栏</a></li>
+                    <li id="team"><a href="/team">参赛队伍</a></li>
+                    <li id="discuss"><a href="/discuss">吐槽</a></li>
+                    <li id="about"><a href="/about">关于</a></li>
+                    {% if user.is_authenticated %}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-user icon-white"></i> {{ user.username }}<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/account/detail"><i class="icon-pencil"></i> 修改资料</a></li>
+                                <li><a href="/account/password"><i class="icon-lock"></i> 修改密码</a></li>
+                                {% if user.is_staff %}
+                                    <li><a href="/admin"><i class="icon-wrench"></i> 站点管理</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                    {% endif %}
+                </ul>
 
-                  <form class="navbar-form pull-right" action='/account/auth/' method='post'>
-                      {% csrf_token %}
-                      {% if user.is_authenticated %}
-                          <input name="logout" type="hidden" value="true">
-                          <input class="span1 btn btn-danger" type="submit" value="注销">
-                      {% else %}
-                          <input class="span2" name='username' type="text" placeholder="用户名">
-                          <input class="span2" name='password' type="password" placeholder="密码">
-                          <input class="btn" type="submit" value="登陆">
-                      {% endif %}
-                  </form>
+                <form class="navbar-form pull-right" action='/account/auth/' method='post'>
+                    {% csrf_token %}
+                    {% if user.is_authenticated %}
+                        <input name="logout" type="hidden" value="true">
+                        <input class="btn btn-danger" type="submit" value="注销">
+                    {% else %}
+                        <input class="span2" name='username' type="text" placeholder="用户名">
+                        <input class="span2" name='password' type="password" placeholder="密码">
+                        <input class="btn" type="submit" value="登陆">
+                    {% endif %}
+                </form>
 
-              </div>
-          </div>
-      </div>
-  </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-  <div class="container">
+<div class="container">
 
-      <!--[if lt IE 9]>
-      <br/ >
-      <br/ >
+    <!--[if lt IE 9]>
       <div class="alert alert-error">
-          <p>您一定在使用较低版本的IE浏览器，建议您更换更高版本的ie或Google Chrome以及Firefox等（搜狗浏览器请开启高速模式）</p>
+          <p>您一定在使用较低版本的IE浏览器，建议您更换更高版本的IE，或Google Chrome以及Firefox等（搜狗浏览器请开启高速模式）</p>
+          <p>ps：低版本的IE神马的最讨厌了嘛…… >_< </p>
       </div>
       <![endif]-->
 
-      {% block content %}{% endblock %}
+    {% block content %}{% endblock %}
 
-      <hr />
+    <hr />
 
-      <footer>
-          <p>&copy; 清华大学工程物理系学生科协 2012</p>
-      </footer>
+    <footer>
+        <p>&copy; 清华大学工程物理系学生科协 2012</p>
+    </footer>
 
-  </div>
+</div>
 
-  <!-- Placed at the end of the document so the pages load faster -->
-  <script src="/media/js/jquery.min.js"></script>
-  <script src="/media/js/bootstrap-transition.js"></script>
-  <script src="/media/js/bootstrap-alert.js"></script>
-  <script src="/media/js/bootstrap-modal.js"></script>
-  <script src="/media/js/bootstrap-dropdown.js"></script>
-  <script src="/media/js/bootstrap-scrollspy.js"></script>
-  <script src="/media/js/bootstrap-tab.js"></script>
-  <script src="/media/js/bootstrap-tooltip.js"></script>
-  <script src="/media/js/bootstrap-popover.js"></script>
-  <script src="/media/js/bootstrap-button.js"></script>
-  <script src="/media/js/bootstrap-collapse.js"></script>
-  <script src="/media/js/bootstrap-carousel.js"></script>
-  <script src="/media/js/bootstrap-typeahead.js"></script>
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="/media/js/jquery.min.js"></script>
+<script src="/media/js/bootstrap-transition.js"></script>
+<script src="/media/js/bootstrap-alert.js"></script>
+<script src="/media/js/bootstrap-modal.js"></script>
+<script src="/media/js/bootstrap-dropdown.js"></script>
+<script src="/media/js/bootstrap-scrollspy.js"></script>
+<script src="/media/js/bootstrap-tab.js"></script>
+<script src="/media/js/bootstrap-tooltip.js"></script>
+<script src="/media/js/bootstrap-popover.js"></script>
+<script src="/media/js/bootstrap-button.js"></script>
+<script src="/media/js/bootstrap-collapse.js"></script>
+<script src="/media/js/bootstrap-carousel.js"></script>
+<script src="/media/js/bootstrap-typeahead.js"></script>
 
-  {% block extrafooter %}{% endblock %}
+{% block extrafooter %}{% endblock %}
 
-  </body>
+</body>
 </html>

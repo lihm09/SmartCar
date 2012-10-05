@@ -1,0 +1,2 @@
+def siteinfo(request):
+    pass

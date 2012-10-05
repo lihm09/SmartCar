@@ -94,6 +94,18 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.eggs.Loader',
 )
 
+#
+#TEMPLATE_CONTEXT_PROCESSORS = (
+#    'django.contrib.auth.context_processors.auth',
+#    'django.contrib.messages.context_processors.messages',
+#    'django.core.context_processors.debug',
+#    'django.core.context_processors.i18n',
+#    'django.core.context_processors.media',
+#    'django.core.context_processors.static',
+#    'django.core.context_processors.csrf',
+#    'SmartCar.context_processors.siteinfo'
+#)
+
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -105,6 +117,7 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'SmartCar.urls'
+#APPEND_SLASH = True
 
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'SmartCar.wsgi.application'
@@ -124,11 +137,10 @@ INSTALLED_APPS = (
     #'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
+
     'grappelli',
     'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+
     'account',
 )
 
