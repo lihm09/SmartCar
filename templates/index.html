@@ -2,8 +2,7 @@
 
 {% block title %}首页{% endblock %}
 {% block extrahead %}
-    <link rel="stylesheet" type="text/css" href="/media/css/gallery.css">
-    <script type="text/javascript" src="/media/js/modernizr.custom.53451.js"></script>
+
 {% endblock %}
 {% block content %}
 
@@ -11,7 +10,7 @@
         <h1>第七届智能车竞赛 <a class="btn btn-primary btn-large" href="/account/register">我要报名 &raquo;</a></h1>
     </div>
 
-    <div class="row">
+    <div class="row about">
         <div class="span8">
             <br/>
             <ul>
@@ -48,20 +47,9 @@
             <p>清华大学三角洲工作室</p>
         </div>
     </div>
-    <section id="dg-container" class="dg-container hidden-phone">
-        <div id="gallery" class="dg-wrapper">
-            <a href="#gallery"><img class="img-rounded" src="/media/img/1.jpg" alt="image01"><div>OV7620 特写.</div></a>
-            <a href="#gallery"><img class="img-rounded" src="/media/img/2.jpg" alt="image02"><div>厉害!</div></a>
-            <a href="#gallery"><img class="img-rounded" src="/media/img/3.jpg" alt="image03"><div>摄像头特写</div></a>
-            <a href="#gallery"><img class="img-rounded" src="/media/img/4.jpg" alt="image04"><div>电路板原型 I</div></a>
-        </div>
-    </section>
 
 {% endblock %}
 
 {% block extrafooter %}
-    <script src="/media/js/jquery.gallery.js"></script>
-    <script type="text/javascript">
-        $('#dg-container').gallery({autoplay:true});
-    </script>
+
 {% endblock %}
