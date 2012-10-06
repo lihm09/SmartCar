@@ -1,3 +1,9 @@
+body{
+    font-family: "微软雅黑","方正兰亭黑","文泉驿正黑";
+    text-shadow: 1.5px 1.5px 1.5px #aaa;
+    padding-bottom: 40px;
+}
+
 ul,ol{
     margin:0;
 }
@@ -7,8 +13,7 @@ ul,ol{
 .main{
     width:90%;
     margin:20px auto;
-    max-width: 1200px;
-    min-width: 1000px;
+    min-width:768px;
 }
 .nav .nav-header{
     font-size:14px;

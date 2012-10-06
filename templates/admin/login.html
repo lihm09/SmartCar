@@ -31,7 +31,7 @@
     {% endfor %}
     {% endif %}
     <section class="hero-unit login-form">
-        <h3 class="title">{% trans 'Django administration' %}</h3>
+        <h3 class="title">{{ site_name }}</h3>
         <form action="{{ app_path }}" method="post">
             {% csrf_token %}
             <div class="form-row">
