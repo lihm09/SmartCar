@@ -6,7 +6,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^$', 'SmartCar.views.index'),
     url(r'^about/$', 'SmartCar.views.about'),
-    url(r'^media/(.*)$', 'django.views.static.serve',{'document_root':'./media/'}),
+#    url(r'^static/(.*)$', 'django.views.static.serve',{'document_root':'./static/'}),
 
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/', include(admin.site.urls)),

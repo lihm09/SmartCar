@@ -47,30 +47,31 @@ USE_L10N = True
 USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
-# Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
+# Example: "/home/static/static.lawrence.com/static/"
+MEDIA_ROOT = (DIRNAME+'/upload/').replace('\\','/')
 
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
+# URL that handles the static served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
-# Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = ''
+# Examples: "http://static.lawrence.com/static/", "http://example.com/static/"
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
-# Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = DIRNAME+'/static/'
+# Example: "/home/static/static.lawrence.com/static/"
+STATIC_ROOT = (DIRNAME+'/static_root/').replace('\\','/')
 
 # URL prefix for static files.
-# Example: "http://media.lawrence.com/static/"
+# Example: "http://static.lawrence.com/static/"
 STATIC_URL = '/static/'
 
 # Make sure to use a trailing slash.
 # Examples: "http://foo.com/static/admin/", "/static/admin/".
-#ADMIN_MEDIA_PREFIX = STATIC_URL+"grappelli/"
+ADMIN_MEDIA_PREFIX = STATIC_URL+"admin/"
 
 # Additional locations of static files
 STATICFILES_DIRS = (
+    (DIRNAME+'/static/').replace('\\','/'),
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -100,7 +101,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 #    'django.contrib.messages.context_processors.messages',
 #    'django.core.context_processors.debug',
 #    'django.core.context_processors.i18n',
-#    'django.core.context_processors.media',
+#    'django.core.context_processors.static',
 #    'django.core.context_processors.static',
 #    'django.core.context_processors.csrf',
 #    'django.core.context_processors.request',
