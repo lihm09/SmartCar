@@ -67,7 +67,7 @@ STATIC_URL = '/static/'
 
 # Make sure to use a trailing slash.
 # Examples: "http://foo.com/static/admin/", "/static/admin/".
-ADMIN_MEDIA_PREFIX = STATIC_URL+"grappelli/"
+#ADMIN_MEDIA_PREFIX = STATIC_URL+"grappelli/"
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -94,17 +94,18 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.eggs.Loader',
 )
 
-#
-#TEMPLATE_CONTEXT_PROCESSORS = (
-#    'django.contrib.auth.context_processors.auth',
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
 #    'django.contrib.messages.context_processors.messages',
 #    'django.core.context_processors.debug',
 #    'django.core.context_processors.i18n',
 #    'django.core.context_processors.media',
 #    'django.core.context_processors.static',
 #    'django.core.context_processors.csrf',
-#    'SmartCar.context_processors.siteinfo'
-#)
+#    'django.core.context_processors.request',
+    'SmartCar.context_processors.siteinfo'
+)
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
@@ -117,14 +118,15 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'SmartCar.urls'
-#APPEND_SLASH = True
 
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'SmartCar.wsgi.application'
 
-TEMPLATE_DIRS = (os.path.join(DIRNAME, 'templates').replace('\\','/'),)
+TEMPLATE_DIRS = (
+    os.path.join(DIRNAME, 'templates').replace('\\','/'),
+)
 
-AUTH_PROFILE_MODULE='account.UserProfile'
+#AUTH_PROFILE_MODULE='account.UserProfile'
 
 #LOGIN_URL='/login/'
 #LOGIN_REDIRECT_URL='/'
@@ -137,8 +139,6 @@ INSTALLED_APPS = (
     #'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'grappelli',
     'django.contrib.admin',
 
     'account',

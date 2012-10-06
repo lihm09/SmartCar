@@ -1,4 +1,4 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 
 def register(request):
-    return render_to_response('account/register.html')
+    return render(request,'account/register.html')

@@ -2,7 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cn" lang="cn">
 <head>
-    <title>智能车竞赛官网 : {% block title %}{% endblock %}</title>
+    <title>{{ site_name }} : {% block title %}{% endblock %}</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="/media/css/bootstrap.css">
@@ -24,7 +24,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="/">第七届智能车竞赛</a>
+            <a class="brand" href="/">{{ site_name }}</a>
             <div class="nav-collapse collapse">
                 <ul class="nav">
                     <li id="home" class="active"><a href="/">首页</a></li>
@@ -78,7 +78,7 @@
     <hr />
 
     <footer>
-        <p>&copy; 清华大学工程物理系学生科协 2012</p>
+        <p>&copy; {{ org }} {{ year }}</p>
     </footer>
 
 </div>

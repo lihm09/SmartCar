@@ -1,8 +1,7 @@
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 
 def index(request):
-    return render_to_response('index.html',{},context_instance=RequestContext(request))
+    return render(request,'index.html')
 
 def about(request):
-    return render_to_response('about.html',{},context_instance=RequestContext(request))
+    return render(request,'about.html')
