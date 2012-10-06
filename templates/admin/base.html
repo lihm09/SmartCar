@@ -5,6 +5,12 @@
         <title>{% block title %}{% endblock %}</title>
         <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css" />
         <link rel="stylesheet" type="text/css" href="/static/css/admin.css" />
+        <!--[if lt IE 9]>
+        <script src="/static/js/html5.js"></script>
+        <![endif]-->
+        <!--[if IE 6]>
+        <link href="/static/css/ie6.min.css" rel="stylesheet">
+        <![endif]-->
         {% block extrastyle %}{% endblock %}
         {% block extrahead %}{% endblock %}
         {% block blockbots %}
