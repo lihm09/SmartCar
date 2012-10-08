@@ -8,7 +8,7 @@
 {% block content %}
 
     <div class="hero-unit">
-        <h1>{{ site_name }} <a class="btn btn-primary btn-large" href="/account/register">我要报名 &raquo;</a></h1>
+        <h1>{{ site_name }} <a class="btn btn-primary btn-large" href="{% url userena_signup %}">我要报名 &raquo;</a></h1>
     </div>
 
     <div class="row about">
@@ -29,7 +29,7 @@
                 </li>
                 <li>
                     <p class="lead">第七届清华大学智能车竞赛将于本学期拉开帷幕。
-                        本届比赛将新增<span class="text-error">直立行走的电磁组</span>的赛题，可谓趣味无穷！请到“<a href="/announcement">公告</a>”栏先睹为快！</p>
+                        本届比赛将新增<span class="text-error">直立行走的电磁组</span>的赛题，可谓趣味无穷！请到“<a href="/post">公告栏</a>”先睹为快！</p>
                 </li>
             </ul>
         </div>
@@ -50,10 +50,10 @@
     </div>
     <section id="dg-container" class="dg-container hidden-phone">
         <div id="gallery" class="dg-wrapper">
-            <a href="#gallery"><img class="img-rounded" src="/static/img/1.jpg" alt="image01"><div>OV7620 特写.</div></a>
-            <a href="#gallery"><img class="img-rounded" src="/static/img/2.jpg" alt="image02"><div>厉害!</div></a>
-            <a href="#gallery"><img class="img-rounded" src="/static/img/3.jpg" alt="image03"><div>摄像头特写</div></a>
-            <a href="#gallery"><img class="img-rounded" src="/static/img/4.jpg" alt="image04"><div>电路板原型 I</div></a>
+            <a><img class="img-rounded" src="/static/img/1.jpg" alt="image01"><div>OV7620 特写.</div></a>
+            <a><img class="img-rounded" src="/static/img/2.jpg" alt="image02"><div>厉害!</div></a>
+            <a><img class="img-rounded" src="/static/img/3.jpg" alt="image03"><div>摄像头特写</div></a>
+            <a><img class="img-rounded" src="/static/img/4.jpg" alt="image04"><div>电路板原型 I</div></a>
         </div>
     </section>
 

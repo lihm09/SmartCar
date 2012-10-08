@@ -48,7 +48,7 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/static/static.lawrence.com/static/"
-MEDIA_ROOT = (DIRNAME+'/upload/').replace('\\','/')
+MEDIA_ROOT = (DIRNAME+'/media/').replace('\\','/')
 
 # URL that handles the static served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -82,7 +82,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -127,11 +127,27 @@ TEMPLATE_DIRS = (
     os.path.join(DIRNAME, 'templates').replace('\\','/'),
 )
 
-#AUTH_PROFILE_MODULE='account.UserProfile'
 
-#LOGIN_URL='/login/'
-#LOGIN_REDIRECT_URL='/'
-#LOGOUT_URL='/logout/'
+AUTHENTICATION_BACKENDS = (
+    'userena.backends.UserenaAuthenticationBackend',
+    'guardian.backends.ObjectPermissionBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+EMAIL_USE_TLS = False
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'depsast@thudep.org'
+EMAIL_HOST_PASSWORD = ''
+
+AUTH_PROFILE_MODULE='accounts.MyProfile'
+
+ANONYMOUS_USER_ID = -1
+
+LOGIN_REDIRECT_URL = '/accounts/%(username)s/'
+LOGIN_URL = '/accounts/signin/'
+LOGOUT_URL = '/accounts/signout/'
+
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -140,6 +156,12 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+
+    'userena',
+    'guardian',
+    'easy_thumbnails',
+    'accounts',
+
 )
 
 # A sample logging configuration. The only tangible logging
