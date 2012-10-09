@@ -1,7 +1,12 @@
+# encoding: utf-8
 # Django settings for SmartCar project.
 import os
 
 DIRNAME=os.path.abspath(os.path.join(os.path.dirname(__file__),".."))
+
+SITE_NAME=' 智能车竞赛官网'
+COMPETITION_NAME='第七届智能车竞赛'
+ORG='智能车竞赛组委会'
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -127,26 +132,18 @@ TEMPLATE_DIRS = (
     os.path.join(DIRNAME, 'templates').replace('\\','/'),
 )
 
-
-AUTHENTICATION_BACKENDS = (
-    'userena.backends.UserenaAuthenticationBackend',
-    'guardian.backends.ObjectPermissionBackend',
-    'django.contrib.auth.backends.ModelBackend',
-)
-EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
-EMAIL_USE_TLS = False
-EMAIL_HOST = 'localhost'
+#EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 25
-EMAIL_HOST_USER = 'depsast@thudep.org'
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_USER = 'everpcpcpc@gmail.com'
+EMAIL_HOST_PASSWORD = '07165980218'
 
 AUTH_PROFILE_MODULE='accounts.MyProfile'
 
-ANONYMOUS_USER_ID = -1
-
-LOGIN_REDIRECT_URL = '/accounts/%(username)s/'
-LOGIN_URL = '/accounts/signin/'
-LOGOUT_URL = '/accounts/signout/'
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/signin/'
+LOGOUT_URL = '/signout/'
 
 
 INSTALLED_APPS = (
@@ -157,11 +154,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
 
-    'userena',
-    'guardian',
-    'easy_thumbnails',
     'accounts',
-
 )
 
 # A sample logging configuration. The only tangible logging

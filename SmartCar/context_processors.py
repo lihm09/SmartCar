@@ -1,8 +1,9 @@
-# encoding: utf-8
 import datetime
+from settings import *
 
 def siteinfo(request):
-    info={'site_name':'第七届智能车竞赛',
+    info={'site_name':SITE_NAME,
+          'competition_name':COMPETITION_NAME,
           'year':datetime.datetime.now().year,
-          'org':'清华大学工程物理系学生科协'}
+          'org':ORG}
     return info

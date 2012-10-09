@@ -5,12 +5,14 @@
     <link rel="stylesheet" type="text/css" href="/static/css/gallery.css">
     <script type="text/javascript" src="/static/js/modernizr.custom.53451.js"></script>
 {% endblock %}
-{% block content %}
 
+{% block content_title %}
     <div class="hero-unit">
-        <h1>{{ site_name }} <a class="btn btn-primary btn-large" href="{% url userena_signup %}">我要报名 &raquo;</a></h1>
+        <h1>{{ competition_name }} <a class="btn btn-primary btn-large" href="{% url signup %}">我要报名 &raquo;</a></h1>
     </div>
+{% endblock %}
 
+{% block content %}
     <div class="row about">
         <div class="span8">
             <br/>

@@ -1,0 +1,38 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}登陆{% endblock %}
+
+{% block extrahead %}
+    <link rel="stylesheet" type="text/css" href="/static/css/login.css">
+{% endblock %}
+
+{% block content %}
+<section class="login-wp">
+
+    <section class="hero-unit login-form">
+        <h2 class="title">登陆</h2>
+        <form action="{% url signin %}" method="post">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="form-row">
+                <label for="id_username" class="required">{{ form.username.label }}</label>{{ form.username.errors }} {{ form.username }}
+            </div>
+            <div class="form-row">
+                <label for="id_password" class="required">{{ form.password.label }}</label>{{ form.password.errors }} {{ form.password }}
+                <input type="hidden" name="next" value="{{ next }}" />
+            </div>
+            <div class="submit-row">
+                <input type="submit" value="登陆" class="btn btn-primary" />
+            </div>
+        </form>
+    </section>
+</section>
+{% endblock %}
+
+{% block extrafooter %}
+    <script type="text/javascript">
+        $('#id_username').focus();
+        $('#home').removeClass('active');
+    </script>
+{% endblock %}
+

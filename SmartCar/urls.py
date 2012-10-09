@@ -7,7 +7,8 @@ urlpatterns = patterns('',
     url(r'^$', 'SmartCar.views.index'),
     url(r'^about/$', 'SmartCar.views.about'),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^accounts/',include('userena.urls')),
+    url(r'^accounts/',include('accounts.urls')),
 
     url(r'^media/(.*)$', 'django.views.static.serve',{'document_root':'./media/'}),
+
 )
