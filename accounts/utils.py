@@ -1,25 +1,29 @@
 # encoding: utf-8
 
-from django.shortcuts import render
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 from smtplib import SMTPException
 from SmartCar.settings import *
 from django.template import loader, Context
 
 import random, string
 
-def send_activation_email(request,user):
-
-    activation_msg=loader.get_template('accounts/confirm_message.html')
-    msg_context=Context({})
+def send_activation_email(email,username,code):
+    subject='['+SITE_NAME+']'+'Email地址验证'
+    msg_context=Context({
+        'site_name':SITE_NAME,
+        'org':ORG,
+        'username':username,
+        'confirm_code':code
+    })
+    html_content=loader.get_template('accounts/confirm_message.html').render(msg_context)
+    activation_msg=EmailMessage(subject,html_content,EMAIL_HOST_USER,[email])
+    activation_msg.content_subtype="html"
 
     try:
-        send_mail('['+SITE_NAME+']'+'Email地址验证', activation_msg.render(msg_context), EMAIL_HOST_USER,[user_email], fail_silently=False)
+        activation_msg.send(fail_silently=False)
     except SMTPException:
-        return render(request,'accounts/sendmail_fail.html')
-
+        return False
     return True
-
 
 
 def new_activation_code(random_length=40):

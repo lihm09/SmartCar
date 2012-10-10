@@ -7,7 +7,8 @@ from accounts.settings import GENDER_CHOICES, DEPARTMENT_CHOICES
 #用户激活码，激活后删除
 class ActivationCode(models.Model):
     user = models.OneToOneField(User,unique=True,verbose_name='用户')
-    activation_key = models.CharField('激活码',max_length=40)
+    activation_code = models.CharField('激活码',max_length=40)
+    mail_sent_or_not = models.BooleanField('是否已发送验证邮件',default=False)
 
     class Meta:
         verbose_name='激活码'

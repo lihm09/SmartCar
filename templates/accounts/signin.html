@@ -2,14 +2,9 @@
 
 {% block title %}登陆{% endblock %}
 
-{% block extrahead %}
-    <link rel="stylesheet" type="text/css" href="/static/css/login.css">
-{% endblock %}
-
 {% block content %}
-<section class="login-wp">
-
-    <section class="hero-unit login-form">
+<div class="sign-form-container">
+    <div class="hero-unit sign-form">
         <h2 class="title">登陆</h2>
         <form action="{% url signin %}" method="post">
             {% csrf_token %}
@@ -24,8 +19,8 @@
                 <input type="submit" value="登陆" class="btn btn-primary" />
             </div>
         </form>
-    </section>
-</section>
+    </div>
+</div>
 
     <script type="text/javascript">
         $('#id_username').focus();

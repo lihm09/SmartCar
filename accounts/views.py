@@ -5,9 +5,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import auth
 
-from accounts.forms import signin_form
+from accounts.forms import signin_form, signup_form
+from django import forms
 from SmartCar.settings import *
-
 
 
 def index(request):
@@ -17,8 +17,9 @@ def index(request):
 #登陆
 def signin(request):
     redirect_to = request.REQUEST.get('next', '')
-
-    if request.method == 'POST':
+    if request.user.is_authenticated():
+        return redirect('/')
+    elif request.method == 'POST':
         form=signin_form(data=request.POST)
         if form.is_valid():
             netloc = urlparse.urlparse(redirect_to)[1]
@@ -34,11 +35,8 @@ def signin(request):
             return redirect(redirect_to)
         else:
             return render(request, 'accounts/signin.html',{'form':form})
-
-    elif request.user.is_authenticated():
-        return redirect('/')
     else:
-        form=signin_form(request)
+        form=signin_form()
         request.session.set_test_cookie()
         return render(request, 'accounts/signin.html',{'form':form})
 
@@ -49,13 +47,23 @@ def signout(request):
 
 #注册
 def signup(request):
-    if request.method is 'post':
-        pass
+    if request.user.is_authenticated():
+        return redirect('/')
+    elif not SIGNUP_ACCESS:
+        return render(request,'accounts/signup_end.html')
+    elif request.method == 'POST':
+        form=signup_form(data=request.POST)
+        if form.is_valid():
+            try:
+                form.sav()
+            except forms.ValidationError:
+                return render(request, 'accounts/signup.html',{'form':form})
+            return render(request, 'accounts/sendmail_succeed.html',{'form':form})
+        else:
+            return render(request, 'accounts/signup.html',{'form':form})
     else:
-        return render(request,'accounts/signup.html')
-    pass
-
-
+        form=signup_form()
+        return render(request,'accounts/signup.html',{'form':form})
 
 
 def confirm(request,code):

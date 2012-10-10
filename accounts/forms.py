@@ -3,7 +3,9 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate
-from utils import send_activation_email, new_activation_code
+from django.contrib.auth.models import User
+from accounts.utils import send_activation_email, new_activation_code
+from accounts.models import ActivationCode
 
 #登陆表单
 class signin_form(AuthenticationForm):
@@ -17,6 +19,7 @@ class signin_form(AuthenticationForm):
         'invalid_login': "咦？用户名或密码不对哦……",
         'no_cookies': "您的浏览器不支持cookies哦……",
         'inactive': "您的账号未激活，已重新发送激活邮件，请查收……",
+        'send_mail_fail': "您的账号未激活，而且发送激活邮件失败，请联系管理员以解决问题……",
         }
 
     def clean(self):
@@ -30,8 +33,11 @@ class signin_form(AuthenticationForm):
                 raise forms.ValidationError(
                     self.error_messages['invalid_login'])
             elif not self.user_cache.is_active:
-                if send_activation_email(request=self.request,user=self.user_cache):
+                activation_cache=ActivationCode.objects.get(user=self.user_cache).activation_code
+                if send_activation_email(email=self.user_cache.email,username=self.user_cache.username,code=activation_cache):
                     raise forms.ValidationError(self.error_messages['inactive'])
+                else:
+                    raise forms.ValidationError(self.error_messages['send_mail_fail'])
         self.check_for_test_cookie()
         return self.cleaned_data
 
@@ -43,7 +49,7 @@ class signup_form(forms.Form):
         error_messages={'required':'啊，用户名被吃掉了！','invalid':'用户名不对哦！'})
 
     email = forms.EmailField(label="邮箱",
-        error_messages={'required':'啊，邮箱地址被吃掉了！'})
+        error_messages={'required':'啊，邮箱地址被吃掉了！','invalid':'这个真的是邮箱地址吗？'})
 
     password1 = forms.RegexField(label="密码", widget=forms.PasswordInput,regex=r'^[a-z0-9-_]{6,18}$',
         help_text='用户名只能由数字，大小写字母，短横和下划线组成，而且需在6-18位',
@@ -57,9 +63,54 @@ class signup_form(forms.Form):
     error_messages = {
         'duplicate_username': "已经有人抢先注册这个名字了哦……",
         'duplicate_email': "咦？这个邮箱地址已经被注册过了哦……",
-        'password_mismatch': "咦？两个密码怎么不一样？",
+        'password_mismatch': "咦？怎么跟上面的密码不一样呢？",
+        'send_mail_fail': "注册成功,但是未能发送激活邮件，请联系管理员以解决问题……",
         }
 
-    def clean(self):
+    def clean_username(self):
         username = self.cleaned_data.get('username')
-        password = self.cleaned_data.get('password')
+        try:
+            User.objects.get(username=username)
+        except User.DoesNotExist:
+            return username
+        raise forms.ValidationError(self.error_messages['duplicate_username'])
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if User.objects.filter(email=email):
+            raise forms.ValidationError(self.error_messages['duplicate_email'])
+        return email
+
+    def clean_password2(self):
+        password1 = self.cleaned_data.get('password1')
+        password2 = self.cleaned_data.get('password2')
+        if password1 != password2:
+            raise forms.ValidationError(self.error_messages['password_mismatch'])
+        return password2
+
+    def sav(self):
+        username = self.cleaned_data.get('username')
+        email = self.cleaned_data.get('email')
+        password = self.cleaned_data.get('password1')
+
+        new_user=User.objects.create_user(username,email,password)
+        new_user.is_active=False
+        new_user.save()
+
+        activation_code=new_activation_code()
+        activation_cache=ActivationCode.objects.create(user=new_user,activation_code=activation_code)
+
+        if send_activation_email(email=email,username=username,code=activation_code):
+            activation_cache.mail_sent_or_not=True
+            activation_cache.save()
+        else:
+            raise forms.ValidationError(self.error_messages['send_mail_fail'])
+
+        return new_user
+
+
+
+
+#激活表单（填写详细资料）
+class confirm_form(forms.Form):
+    pass

@@ -4,7 +4,7 @@ import os
 
 DIRNAME=os.path.abspath(os.path.join(os.path.dirname(__file__),".."))
 
-SITE_NAME=' 智能车竞赛官网'
+SITE_NAME='智能车竞赛官网'
 COMPETITION_NAME='第七届智能车竞赛'
 ORG='智能车竞赛组委会'
 #报名截止

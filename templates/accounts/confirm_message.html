@@ -5,8 +5,8 @@
 </head>
 <body>
 Email 地址验证
-<br/><br/>
-<p>{{ name }}，<br>这封信是由 {{ org }} 发送的。</p>
+<br/>
+<p>亲爱的{{ username }}，<br>这封信是由<strong>{{ org }}</strong>发送的。</p>
 <p>您收到这封邮件，是由于在<strong>{{ site_name }}</strong>进行了新用户注册，
     或用户修改 Email 使用了这个邮箱地址。如果您并没有访问过<strong>{{ site_name }}</strong>，
     或没有进行上述操作，请忽略这封邮件。您不需要退订或进行其他进一步的操作。</p>
@@ -18,7 +18,7 @@ Email 地址验证
 ----------------------------------------------------------------------
 <br/>
 <br/>
-<p>如果您是<strong>{{ site_name }}</strong>的新用户，或在修改您的注册 Email 时使用了本地址，
+<p>如果新注册了<strong>{{ site_name }}</strong>，或在修改您的注册 Email 时使用了本地址，
     我们需要对您的地址有效性进行验证以避免垃圾邮件或地址被滥用。</p>
 <p>您只需点击下面的链接即可完成注册步骤激活您的帐号：
     <br/>
@@ -28,7 +28,7 @@ Email 地址验证
 <p>感谢您的访问，祝您使用愉快！</p>
 <p>此致
     <br/>
-    {{ org }}.
+    <strong>{{ org }}</strong>.
     <br/>
     http://car.thudep.org/</p>
 </body>
