@@ -7,6 +7,11 @@ DIRNAME=os.path.abspath(os.path.join(os.path.dirname(__file__),".."))
 SITE_NAME=' 智能车竞赛官网'
 COMPETITION_NAME='第七届智能车竞赛'
 ORG='智能车竞赛组委会'
+#报名截止
+SIGNUP_ACCESS=True
+#队伍最大人数
+TEAM_MAX_MEM=4
+
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -132,6 +137,7 @@ TEMPLATE_DIRS = (
     os.path.join(DIRNAME, 'templates').replace('\\','/'),
 )
 
+
 #EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
@@ -142,8 +148,8 @@ EMAIL_HOST_PASSWORD = '07165980218'
 AUTH_PROFILE_MODULE='accounts.MyProfile'
 
 LOGIN_REDIRECT_URL = '/'
-LOGIN_URL = '/signin/'
-LOGOUT_URL = '/signout/'
+LOGIN_URL = '/accounts/signin/'
+LOGOUT_URL = '/accounts/signout/'
 
 
 INSTALLED_APPS = (
@@ -156,6 +162,10 @@ INSTALLED_APPS = (
 
     'accounts',
 )
+
+
+SESSION_COOKIE_AGE=60*30
+SESSION_EXPIRE_AT_BROWSER_CLOSE=False
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

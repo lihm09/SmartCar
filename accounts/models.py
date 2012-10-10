@@ -23,7 +23,7 @@ class MyProfile(models.Model):
     #team = models.ForeignField(verbose_name=('队伍'))
     mobile = models.CharField('手机',unique=True, max_length=11)
     gender = models.CharField('性别', max_length=1, choices=GENDER_CHOICES, default='M')
-    department = models.CharField('院系',max_length=2,choices=DEPARTMENT_CHOICES)
+    department = models.CharField('院系',max_length=1,choices=DEPARTMENT_CHOICES, default='a')
     class_name = models.CharField('班级',max_length=5)
     dormitory = models.CharField('宿舍',max_length=10)
 
@@ -32,8 +32,8 @@ class MyProfile(models.Model):
         verbose_name_plural = "用户资料"
 
     def __str__(self):
-        if self.user.last_name and self.user.first_name:
-            return self.user.last_name+self.user.first_name
+        if self.user.get_full_name():
+            return self.user.get_full_name()
         else:
             return self.user.username
 

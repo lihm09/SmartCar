@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/static/css/main.css">
     <link rel="stylesheet" type="text/css" href="/static/css/bootstrap-responsive.css">
+    <link rel="shortcut icon" href="/static/img/favicon.ico">
     <!--[if lt IE 9]>
       <script src="/static/js/html5.js"></script>
     <![endif]-->
@@ -27,7 +28,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="javascript:;">{{ site_name }}</a>
+            <a class="brand" href="/">{{ site_name }}</a>
             <div class="nav-collapse collapse">
                 <ul class="nav">
                     <li id="home" class="active"><a href="/"><i class="icon-home icon-white"></i> 首页</a></li>
@@ -35,21 +36,6 @@
                     <li id="team"><a href="/team/"><i class="icon-flag icon-white"></i> 参赛队伍</a></li>
                     <li id="discuss"><a href="/discuss/"><i class="icon-comment icon-white"></i> 吐槽</a></li>
                     <li id="about"><a href="/about/"><i class="icon-info-sign icon-white"></i> 关于</a></li>
-                    {% if user.is_authenticated %}
-                        <li class="dropdown">
-                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="icon-user icon-white"></i> {% firstof user.get_full_name user.username %}<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href=""><i class="icon-home"></i> 详细资料</a></li>
-                                <li><a href=""><i class="icon-pencil"></i> 修改资料</a></li>
-                                <li><a href=""><i class="icon-lock"></i> 修改密码</a></li>
-                                <li><a href=""><i class="icon-envelope"></i> 修改邮箱</a></li>
-                                {% if user.is_staff %}
-                                    <li><a href="/admin/"><i class="icon-wrench"></i> 站点管理</a></li>
-                                {% endif %}
-                            </ul>
-                        </li>
-                    {% endif %}
                 </ul>
 
                 {% if user.is_authenticated %}
@@ -59,7 +45,22 @@
                 <form class="navbar-form pull-right" action='{% url signin %}' method='post'>
                     {% csrf_token %}
                     {% if user.is_authenticated %}
-                        <a class="btn btn-danger" href="{% url signout %}">注销</a>
+                        <div class="btn-group">
+                            <a class="btn btn-info dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i>
+                                {% firstof user.get_full_name user.username %} <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href=""><i class="icon-home"></i> 详细资料</a></li>
+                                <li><a href=""><i class="icon-pencil"></i> 修改资料</a></li>
+                                <li><a href=""><i class="icon-lock"></i> 修改密码</a></li>
+                                <li><a href=""><i class="icon-envelope"></i> 修改邮箱</a></li>
+                                {% if user.is_staff %}
+                                    <li class="divider"></li>
+                                    <li><a href="/admin/"><i class="icon-wrench"></i> 站点管理</a></li>
+                                {% endif %}
+                                <li class="divider"></li>
+                                <li><a href="{% url signout %}"><i class="icon-ban-circle"></i> 注销</a></li>
+                            </ul>
+                        </div>
                     {% else %}
                         <input class="input-mini" name='username' type="text" placeholder="用户名">
                         <input class="input-mini" name='password' type="password" placeholder="密码">

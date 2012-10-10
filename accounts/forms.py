@@ -3,7 +3,7 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate
-from utils import send_activation_email
+from utils import send_activation_email, new_activation_code
 
 #登陆表单
 class signin_form(AuthenticationForm):
@@ -11,7 +11,7 @@ class signin_form(AuthenticationForm):
         error_messages={'required':'啊，用户名被吃掉了！','invalid':'用户名不对哦！'})
 
     password = forms.RegexField(label="密码", widget=forms.PasswordInput,regex=r'^[a-z0-9-_]{6,18}$',
-        error_messages={'required':'啊，密码被吃掉了！','invalid':'密码不符合要求哦！'})
+        error_messages={'required':'啊，密码被吃掉了！','invalid':'密码不对哦！'})
 
     error_messages = {
         'invalid_login': "咦？用户名或密码不对哦……",
@@ -37,7 +37,7 @@ class signin_form(AuthenticationForm):
 
 
 #注册表单
-class signup_form:
+class signup_form(forms.Form):
     username = forms.RegexField(label="用户名",regex=r'^[a-z0-9-]{3,16}$',
         help_text='用户名只能由数字，小写字母，和短横组成，而且需在3-16位',
         error_messages={'required':'啊，用户名被吃掉了！','invalid':'用户名不对哦！'})
@@ -55,6 +55,11 @@ class signup_form:
 
 
     error_messages = {
-        'duplicate_username': "已经有人抢先起了这个名字了哦……",
+        'duplicate_username': "已经有人抢先注册这个名字了哦……",
+        'duplicate_email': "咦？这个邮箱地址已经被注册过了哦……",
         'password_mismatch': "咦？两个密码怎么不一样？",
         }
+
+    def clean(self):
+        username = self.cleaned_data.get('username')
+        password = self.cleaned_data.get('password')

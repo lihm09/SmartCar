@@ -8,7 +8,13 @@
 
 {% block content_title %}
     <div class="hero-unit">
-        <h1>{{ competition_name }} <a class="btn btn-primary btn-large" href="{% url signup %}">我要报名 &raquo;</a></h1>
+        <h1>{{ competition_name }}
+            {% if signup_access %}
+                <a class="btn btn-primary btn-large" href="{% url signup %}">我要报名 &raquo;</a>
+            {% else %}
+                <a class="btn btn-primary btn-large disabled" href="javascript:;">报名结束</a>
+            {% endif %}
+        </h1>
     </div>
 {% endblock %}
 
@@ -50,6 +56,7 @@
             <p>清华大学三角洲工作室</p>
         </div>
     </div>
+    <!--
     <section id="dg-container" class="dg-container hidden-phone">
         <div id="gallery" class="dg-wrapper">
             <a><img class="img-rounded" src="/static/img/1.jpg" alt="image01"><div>OV7620 特写.</div></a>
@@ -58,12 +65,14 @@
             <a><img class="img-rounded" src="/static/img/4.jpg" alt="image04"><div>电路板原型 I</div></a>
         </div>
     </section>
-
+    -->
 {% endblock %}
 
 {% block extrafooter %}
+    <!--
     <script src="/static/js/jquery.gallery.js"></script>
     <script type="text/javascript">
         $('#dg-container').gallery({autoplay:true});
     </script>
+    -->
 {% endblock %}
