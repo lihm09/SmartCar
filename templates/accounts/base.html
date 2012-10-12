@@ -2,7 +2,7 @@
 
 {% block extrafooter %}
     <script type="text/javascript">
-        $('#id_username').focus();
         $('#home').removeClass('active');
     </script>
+    {% block extrascript %}{% endblock %}
 {% endblock %}

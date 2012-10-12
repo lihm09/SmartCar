@@ -47,7 +47,7 @@
                     {% if user.is_authenticated %}
                         <div class="btn-group">
                             <a class="btn btn-info dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i>
-                                {% firstof user.get_full_name user.username %} <span class="caret"></span></a>
+                                {% firstof user.get_profile.real_name user.username %} <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href=""><i class="icon-home"></i> 详细资料</a></li>
                                 <li><a href=""><i class="icon-pencil"></i> 修改资料</a></li>

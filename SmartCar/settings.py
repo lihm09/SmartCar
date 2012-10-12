@@ -12,6 +12,13 @@ SIGNUP_ACCESS=True
 #队伍最大人数
 TEAM_MAX_MEM=4
 
+#EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+EMAIL_USE_TLS = False
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'depsast'
+EMAIL_HOST_PASSWORD = ''
+
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -137,13 +144,6 @@ TEMPLATE_DIRS = (
     os.path.join(DIRNAME, 'templates').replace('\\','/'),
 )
 
-
-#EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 25
-EMAIL_HOST_USER = 'everpcpcpc@gmail.com'
-EMAIL_HOST_PASSWORD = '07165980218'
 
 AUTH_PROFILE_MODULE='accounts.MyProfile'
 
