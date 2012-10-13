@@ -42,12 +42,20 @@ body{
 }
 
 .sign-form-container{
-    width:500px;
-    margin: 50px auto;
+    margin: auto;
 }
+@media (max-width: 512px){
+    .sign-form-container .hero-unit{
+        padding: 0;
+        margin-bottom: 30px;
+        background-color: #ffffff;
+    }
+}
+
 .sign-form{
-    width:263px;
-    padding:20px 20px 20px 50px;
+    min-width: 200px;
+    max-width: 240px;
+    padding:auto;
     margin:0 auto 0;
 }
 .sign-form .title{
