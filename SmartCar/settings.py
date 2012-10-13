@@ -16,7 +16,7 @@ TEAM_MAX_MEM=4
 EMAIL_USE_TLS = False
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 25
-EMAIL_HOST_USER = 'depsast'
+EMAIL_HOST_USER = 'depsast@thudep.org'
 EMAIL_HOST_PASSWORD = ''
 
 

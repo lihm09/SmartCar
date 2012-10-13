@@ -57,10 +57,6 @@ def signup(request):
     elif request.method == 'POST':
         form=signup_form(data=request.POST)
         if form.is_valid():
-            try:
-                form.sav()
-            except forms.ValidationError:
-                return render(request, 'accounts/signup.html',{'form':form})
             return render(request, 'accounts/sendmail_succeed.html',{'form':form})
         else:
             return render(request, 'accounts/signup.html',{'form':form})

@@ -21,7 +21,7 @@ def send_activation_email(email,username,code):
 
     try:
         activation_msg.send(fail_silently=False)
-    except Exception:
+    except:
         return False
     return True
 

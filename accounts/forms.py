@@ -14,7 +14,7 @@ class signin_form(AuthenticationForm):
     username = forms.RegexField(label="用户名",regex=r'^[a-z0-9-]{3,16}$',
         error_messages={'required':'啊，用户名被吃掉了！','invalid':'用户名不对哦！'})
 
-    password = forms.RegexField(label="密码", widget=forms.PasswordInput,regex=r'^[a-z0-9-_]{6,18}$',
+    password = forms.RegexField(label="密码", widget=forms.PasswordInput,regex=r'^[a-zA-Z0-9-_]{6,18}$',
         error_messages={'required':'啊，密码被吃掉了！','invalid':'密码不对哦！'})
 
     error_messages = {
@@ -66,7 +66,7 @@ class signup_form(forms.Form):
     error_messages = {
         'duplicate_username': "已经有人抢先注册这个名字了哦……",
         'duplicate_email': "咦？这个邮箱地址已经被注册过了哦……",
-        'password_mismatch': "咦？怎么跟上面的密码不一样呢？",
+        'password_mismatch': "咦？两个密码怎么不一样呢？",
         'send_mail_fail': "注册成功,但是未能发送激活邮件，请联系管理员以解决问题……",
         }
 
@@ -84,19 +84,16 @@ class signup_form(forms.Form):
             raise forms.ValidationError(self.error_messages['duplicate_email'])
         return email
 
-    def clean_password2(self):
-        password1 = self.cleaned_data.get('password1')
-        password2 = self.cleaned_data.get('password2')
-        if password1 != password2:
-            raise forms.ValidationError(self.error_messages['password_mismatch'])
-        return password2
-
-    def sav(self):
+    def clean(self):
         username = self.cleaned_data.get('username')
         email = self.cleaned_data.get('email')
-        password = self.cleaned_data.get('password1')
+        password1 = self.cleaned_data.get('password1')
+        password2 = self.cleaned_data.get('password2')
 
-        new_user=User.objects.create_user(username,email,password)
+        if password1 != password2:
+            raise forms.ValidationError(self.error_messages['password_mismatch'])
+
+        new_user=User.objects.create_user(username,email,password1)
         new_user.is_active=False
         new_user.save()
 
@@ -109,7 +106,7 @@ class signup_form(forms.Form):
         else:
             raise forms.ValidationError(self.error_messages['send_mail_fail'])
 
-        return new_user
+        return self.cleaned_data
 
 
 
