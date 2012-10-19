@@ -6,15 +6,13 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import auth
 
 from accounts.forms import signin_form, signup_form, confirm_form
-from django import forms
-from SmartCar.settings import LOGIN_REDIRECT_URL,SIGNUP_ACCESS
-
 from accounts.models import ActivationCode
+from SmartCar.settings import LOGIN_REDIRECT_URL,SIGNUP_ACCESS
 
 
 @login_required()
 def index(request):
-    render(request,'accounts/index.html')
+    return render(request,'accounts/index.html')
 
 
 #登陆
