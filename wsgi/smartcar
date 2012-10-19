@@ -20,7 +20,7 @@
 			Allow from all 
         </Directory>
 
-		Alias /static /home/depsast/www/SmartCar/media
+		Alias /media /home/depsast/www/SmartCar/media
 
         <Location "/media">
         	SetHandler None
