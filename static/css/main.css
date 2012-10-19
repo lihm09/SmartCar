@@ -13,7 +13,7 @@ body{
     text-align: center;
     padding: 10px 0 10px 0;
     margin-bottom: 30px;
-    margin-top: 30px;
+    margin-top: 10px;
     background-color: #eeeeee;
     -webkit-border-radius: 6px;
        -moz-border-radius: 6px;
@@ -23,7 +23,6 @@ body{
 .about .span8{
      padding: 10px 0 10px 0;
      margin-bottom: 30px;
-     margin-top: 10px;
  }
 
 .errorlist{
