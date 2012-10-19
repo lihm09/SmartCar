@@ -1,12 +1,12 @@
 
 <VirtualHost *:80>
-        ServerName smartcar.thudep.org
+		ServerName smartcar.thudep.org
 		DocumentRoot /home/depsast/www/SmartCar
-        WSGIScriptAlias / /home/depsast/www/SmartCar/SmartCar/wsgi/django.wsgi
+		WSGIScriptAlias / /home/depsast/www/SmartCar/wsgi/django.wsgi
         
 		<Location "/home/depsast/www/SmartCar">
 			Order Deny,Allow
-            Allow from all
+			Allow from all
         </Location>
 		
 		Alias /static /home/depsast/www/SmartCar/static
@@ -16,25 +16,24 @@
 		</Location>
 		
 		<Directory "/home/depsast/www/SmartCar/static">
-			Order Deny,Allow 
-			Allow from all 
+			Order Deny,Allow
+			Allow from all
         </Directory>
 
 		Alias /media /home/depsast/www/SmartCar/media
 
-        <Location "/media">
-        	SetHandler None
-        </Location>
+		<Location "/media">
+			SetHandler None
+		</Location>
 
-        <Directory "/home/depsast/www/SmartCar/media">
-        	Order Deny,Allow
-        	Allow from all
-        </Directory>
+		<Directory "/home/depsast/www/SmartCar/media">
+			Order Deny,Allow
+			Allow from all
+		</Directory>
 
-        <Directory "/home/depsast/www/SmartCar/wsgi">
+		<Directory "/home/depsast/www/SmartCar/wsgi">
 			Order Deny,Allow 
 			Allow from all 
-        </Directory> 
+		</Directory>
 
-		
 </VirtualHost>

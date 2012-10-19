@@ -17,7 +17,7 @@ body{
     background-color: #eeeeee;
     -webkit-border-radius: 6px;
        -moz-border-radius: 6px;
-            border-radius: 6px;
+             border-radius: 6px;
 }
 
 .about .span8{
@@ -44,14 +44,6 @@ body{
 .sign-form-container{
     margin: auto;
 }
-@media (max-width: 512px){
-    .sign-form-container .hero-unit{
-        padding: 0;
-        margin-bottom: 30px;
-        background-color: #ffffff;
-    }
-}
-
 .sign-form{
     min-width: 200px;
     max-width: 240px;
@@ -63,4 +55,23 @@ body{
 }
 .sign-form form{
     margin-bottom: 10px;
+}
+
+
+
+@media (max-width: 512px){
+
+    .sign-form-container .hero-unit{
+        padding: 0;
+        margin-bottom: 25px;
+        background-color: #ffffff;
+    }
+
+    .hero-unit h1{
+        font-size: 40px;
+    }
+
+    .lead{
+        font-size: 16px;
+    }
 }
