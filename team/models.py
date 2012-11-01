@@ -18,7 +18,7 @@ class Team(models.Model):
         verbose_name = "队伍"
         verbose_name_plural = "队伍"
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name
 
 
