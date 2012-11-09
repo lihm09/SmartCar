@@ -9,6 +9,7 @@ from team.settings import TYPE_CHOICES, STATUS_CHOICES
 class Team(models.Model):
     slug = models.SlugField('队伍代号', unique=True, max_length=10)
     name = models.CharField('队伍名称', unique=True, max_length=20)
+    intro = models.CharField('队伍简介', max_length=200)
     leader = models.OneToOneField(User, unique=True, verbose_name='队长')
     type = models.CharField('参赛组别', max_length=1, choices=TYPE_CHOICES, default='a')
     car_taken = models.BooleanField('已经取车',default=False)
