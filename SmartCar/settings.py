@@ -9,8 +9,6 @@ COMPETITION_NAME='第七届智能车竞赛'
 ORG='智能车竞赛组委会'
 #报名截止
 SIGNUP_ACCESS=True
-#队伍最大人数
-TEAM_MAX_MEM=4
 
 #EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
 EMAIL_USE_TLS = False

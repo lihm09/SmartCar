@@ -1,0 +1,29 @@
+{% extends 'post/base.html' %}
+
+{% block title %}公告栏{% endblock %}
+
+{% block content_title %}
+    <h1>公告栏</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="span12">
+            <ul>
+                {% if top %}
+                    {% for item in top %}
+                        <li class='top'>{{ item.title }}</li>
+                    {% endfor %}
+                {% endif %}
+
+                {% if rest %}
+                    {% for item in rest %}
+                        <li>{{ item.title }}</li>
+                    {% endfor %}
+                {% else %}
+                    <p>目前还木有公告哦~~~</p>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
