@@ -1,0 +1,20 @@
+{% extends 'post/base.html' %}
+{% load markup %}
+
+{% block title %}{{ this_post.title }}{% endblock %}
+
+{% block content_title %}
+        <h1>
+            {{ this_post.title }}
+            <a class="btn btn-info" href="/post/">返回公告栏</a>
+            {% if user.is_superuser %}
+                <a class="btn btn-danger" href="/manage/post/announcement/{{ this_post.id }}/">编辑</a>
+            {% endif %}
+        </h1>
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        {{ this_post.content|markdown }}
+    </div>
+{% endblock %}

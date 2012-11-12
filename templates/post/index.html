@@ -1,29 +1,61 @@
 {% extends 'post/base.html' %}
+{% load markup %}
 
 {% block title %}公告栏{% endblock %}
 
-{% block content_title %}
-    <h1>公告栏</h1>
-{% endblock %}
+{% block content_title %}{% endblock %}
 
 {% block content %}
     <div class="row">
-        <div class="span12">
-            <ul>
-                {% if top %}
-                    {% for item in top %}
-                        <li class='top'>{{ item.title }}</li>
-                    {% endfor %}
-                {% endif %}
+        <div class="span8">
+            <h1>公告栏</h1>
+            {% if top %}
+                {% for item in top %}
+                    <div class="article top">
+                        <div class="title">
+                            <h2>
+                                <a href="/post/{{ item.id }}/">{{ item.title }}</a>
+                                <i class="icon-arrow-up"></i>
+                            </h2>
+                            <span class="label label-inverse">{{ item.post_time }}</span>
+                            <span class="label label-info">点击量：{{ item.hits }}</span>
+                            {% if user.is_superuser %}
+                                <span class="label label-important">
+                                    <a href="/manage/post/announcement/{{ item.id }}/">编辑</a>
+                                </span>
+                            {% endif %}
+                        </div>
+                        <div class="content">{{ item.content|markdown }}</div>
+                    </div>
+                {% endfor %}
+            {% endif %}
 
-                {% if rest %}
-                    {% for item in rest %}
-                        <li>{{ item.title }}</li>
-                    {% endfor %}
-                {% else %}
-                    <p>目前还木有公告哦~~~</p>
-                {% endif %}
-            </ul>
+            {% if rest %}
+                {% for item in rest %}
+                    <div class="article">
+                        <div class="title">
+                            <h2>
+                                <a href="/post/{{ item.id }}/">{{ item.title }}</a>
+                            </h2>
+                            <span class="label label-inverse">{{ item.post_time }}</span>
+                            <span class="label label-info">点击量：{{ item.hits }}</span>
+                            {% if user.is_superuser %}
+                                <span class="label label-important">
+                                    <a href="/manage/post/announcement/{{ item.id }}/">编辑</a>
+                                </span>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>目前还木有公告哦~~~</p>
+            {% endif %}
         </div>
+    <div class="span4 download">
+        <h1>资料下载</h1>
+        <div class="content">
+            <p>内容</p>
+        </div>
+    </div>
     </div>
 {% endblock %}

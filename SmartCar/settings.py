@@ -117,7 +117,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 #    'django.core.context_processors.debug',
 #    'django.core.context_processors.i18n',
 #    'django.core.context_processors.static',
-#    'django.core.context_processors.static',
 #    'django.core.context_processors.csrf',
 #    'django.core.context_processors.request',
     'SmartCar.context_processors.siteinfo'
@@ -156,6 +155,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.markup',
     'django.contrib.admin',
 
     'accounts',
