@@ -8,7 +8,20 @@
 {% block content %}
     <div class="row">
         <div class="span8">
-            <h1>公告栏</h1>
+            <hr/>
+            <div class="pull-right">
+                <form>
+                    <div class="input-append">
+                        <input type="text" class="span2">
+                        <input type="submit" class="btn" value="搜索">
+                    </div>
+                </form>
+            </div>
+            <h1>公告栏
+                {% if user.is_superuser %}
+                    <a class="btn btn-danger" href="/manage/post/announcement/add/">发布公告</a>
+                {% endif %}
+            </h1>
             {% if top %}
                 {% for item in top %}
                     <div class="article top">
@@ -25,7 +38,9 @@
                                 </span>
                             {% endif %}
                         </div>
+                        <!--
                         <div class="content">{{ item.content|markdown }}</div>
+                    -->
                     </div>
                 {% endfor %}
             {% endif %}
@@ -47,15 +62,18 @@
                         </div>
                     </div>
                 {% endfor %}
-            {% else %}
-                <p>目前还木有公告哦~~~</p>
             {% endif %}
         </div>
-    <div class="span4 download">
-        <h1>资料下载</h1>
-        <div class="content">
-            <p>内容</p>
+        <div class="span4 download">
+            <hr/>
+            <h1>资料下载
+                {% if user.is_superuser %}
+                    <a class="btn btn-danger" href="/manage/post/download/add/">添加文件</a>
+                {% endif %}
+            </h1>
+            <div class="content">
+                <p>内容</p>
+            </div>
         </div>
-    </div>
     </div>
 {% endblock %}

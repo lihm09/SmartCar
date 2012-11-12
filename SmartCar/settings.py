@@ -63,12 +63,12 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/static/static.lawrence.com/static/"
-MEDIA_ROOT = (DIRNAME+'/media/').replace('\\','/')
+MEDIA_ROOT = (DIRNAME+'/static/upload/').replace('\\','/')
 
 # URL that handles the static served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://static.lawrence.com/static/", "http://example.com/static/"
-MEDIA_URL = '/media/'
+MEDIA_URL = '/static/upload/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -116,8 +116,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 #    'django.contrib.messages.context_processors.messages',
 #    'django.core.context_processors.debug',
 #    'django.core.context_processors.i18n',
-#    'django.core.context_processors.static',
-#    'django.core.context_processors.csrf',
+    'django.core.context_processors.static',
+    'django.core.context_processors.csrf',
 #    'django.core.context_processors.request',
     'SmartCar.context_processors.siteinfo'
 )

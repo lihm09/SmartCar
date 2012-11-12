@@ -3,8 +3,8 @@
 {% block title %}首页{% endblock %}
 {% block extrahead %}
 <!--
-    <link rel="stylesheet" type="text/css" href="/static/css/gallery.css">
-    <script type="text/javascript" src="/static/js/modernizr.custom.53451.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/gallery.css">
+    <script type="text/javascript" src="{{ STATIC_URL }}js/modernizr.custom.53451.js"></script>
 -->
 {% endblock %}
 
@@ -62,10 +62,10 @@
 <!--
     <section id="dg-container" class="dg-container hidden-phone">
         <div id="gallery" class="dg-wrapper">
-            <a><img class="img-rounded" src="/static/img/1.jpg" alt="image01"><div>OV7620 特写.</div></a>
-            <a><img class="img-rounded" src="/static/img/2.jpg" alt="image02"><div>厉害!</div></a>
-            <a><img class="img-rounded" src="/static/img/3.jpg" alt="image03"><div>摄像头特写</div></a>
-            <a><img class="img-rounded" src="/static/img/4.jpg" alt="image04"><div>电路板原型 I</div></a>
+            <a><img class="img-rounded" src="{{ STATIC_URL }}img/1.jpg" alt="image01"><div>OV7620 特写.</div></a>
+            <a><img class="img-rounded" src="{{ STATIC_URL }}img/2.jpg" alt="image02"><div>厉害!</div></a>
+            <a><img class="img-rounded" src="{{ STATIC_URL }}img/3.jpg" alt="image03"><div>摄像头特写</div></a>
+            <a><img class="img-rounded" src="{{ STATIC_URL }}img/4.jpg" alt="image04"><div>电路板原型 I</div></a>
         </div>
     </section>
 -->
@@ -73,7 +73,7 @@
 
 {% block extrafooter %}
 <!--
-    <script src="/static/js/jquery.gallery.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery.gallery.js"></script>
     <script type="text/javascript">
         $('#dg-container').gallery({autoplay:true});
     </script>

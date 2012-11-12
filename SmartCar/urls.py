@@ -10,6 +10,4 @@ urlpatterns = patterns('',
     url(r'^accounts/',include('accounts.urls')),
     url(r'^post/', include('post.urls')),
 
-    url(r'^media/(.*)$', 'django.views.static.serve',{'document_root':'./media/'}),
-
 )

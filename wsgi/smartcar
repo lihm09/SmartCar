@@ -20,17 +20,6 @@
 			Allow from all
         </Directory>
 
-		Alias /media /home/depsast/www/SmartCar/media
-
-		<Location "/media">
-			SetHandler None
-		</Location>
-
-		<Directory "/home/depsast/www/SmartCar/media">
-			Order Deny,Allow
-			Allow from all
-		</Directory>
-
 		<Directory "/home/depsast/www/SmartCar/wsgi">
 			Order Deny,Allow 
 			Allow from all 

@@ -16,4 +16,6 @@ def detail(request,num):
         this_post=Announcement.objects.get(id=num)
     except ObjectDoesNotExist:
         raise Http404
+    this_post.hits+=1
+    this_post.save()
     return render(request, 'post/detail.html',{'this_post':this_post})
