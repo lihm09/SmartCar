@@ -1,5 +1,5 @@
 from django.contrib import admin
-from post.models import Announcement, Download
+from post.models import Post, File
 
-admin.site.register(Announcement)
-admin.site.register(Download)
+admin.site.register(Post)
+admin.site.register(File)

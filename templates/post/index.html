@@ -1,5 +1,4 @@
 {% extends 'post/base.html' %}
-{% load markup %}
 
 {% block title %}公告栏{% endblock %}
 
@@ -9,17 +8,9 @@
     <div class="row">
         <div class="span8">
             <hr/>
-            <div class="pull-right">
-                <form class="form-search">
-                    <div class="input-append">
-                        <input type="text" id="s" class="search-query" placeholder="输入内容搜索公告">
-                        <input type="submit" class="btn" value="搜索">
-                    </div>
-                </form>
-            </div>
             <h1>公告栏
                 {% if user.is_superuser %}
-                    <a class="btn btn-danger" href="/manage/post/announcement/add/">发布公告</a>
+                    <a class="btn btn-danger" href="/manage/post/post/add/">发布公告</a>
                 {% endif %}
             </h1>
             {% if top %}
@@ -34,13 +25,10 @@
                             <span class="label label-info">点击量：{{ item.hits }}</span>
                             {% if user.is_superuser %}
                                 <span class="label label-important">
-                                    <a href="/manage/post/announcement/{{ item.id }}/">编辑</a>
+                                    <a href="/manage/post/post/{{ item.id }}/">编辑</a>
                                 </span>
                             {% endif %}
                         </div>
-                        <!--
-                        <div class="content">{{ item.content|markdown }}</div>
-                    -->
                     </div>
                 {% endfor %}
             {% endif %}
@@ -52,11 +40,11 @@
                             <h2>
                                 <a href="/post/{{ item.id }}/">{{ item.title }}</a>
                             </h2>
-                            <span class="label label-inverse">{{ item.post_time }}</span>
+                            <span class="label label-inverse">{{ item.post_time|date:"Y/m/d H:i" }}</span>
                             <span class="label label-info">点击量：{{ item.hits }}</span>
                             {% if user.is_superuser %}
                                 <span class="label label-important">
-                                    <a href="/manage/post/announcement/{{ item.id }}/">编辑</a>
+                                    <a href="/manage/post/post/{{ item.id }}/">编辑</a>
                                 </span>
                             {% endif %}
                         </div>
@@ -64,16 +52,30 @@
                 {% endfor %}
             {% endif %}
         </div>
-        <div class="span4 download">
+        <div class="span4">
             <hr/>
             <h1>资料下载
                 {% if user.is_superuser %}
-                    <a class="btn btn-danger" href="/manage/post/download/add/">添加文件</a>
+                    <a class="btn btn-danger" href="/manage/post/file/add/">添加文件</a>
                 {% endif %}
             </h1>
-            <div class="content">
-                <p>内容</p>
-            </div>
+        {% if file %}
+            {% for item in file %}
+                <div class="article">
+                <div class="title">
+                    <h2><a href="/post/file/{{ item.id }}" title="{{ item.description }}">{{ item.name }}</a></h2>
+                    <span class="label label-inverse">{{ item.upload_time|date:"Y/m/d H:i" }}</span>
+                    <span class="label label-success">{{ item.file.size|filesizeformat }}</span>
+                    <span class="label label-info">下载量：{{ item.hits }}</span>
+                    {% if user.is_superuser %}
+                        <span class="label label-important">
+                                    <a href="/manage/post/file/{{ item.id }}/">编辑</a>
+                                </span>
+                    {% endif %}
+                </div>
+                </div>
+            {% endfor %}
+        {% endif %}
         </div>
     </div>
 {% endblock %}

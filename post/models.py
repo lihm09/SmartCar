@@ -5,7 +5,7 @@ import os
 from django.db.models.signals import post_delete
 import time
 
-class Announcement(models.Model):
+class Post(models.Model):
     title = models.CharField('标题', max_length=50)
     content = models.TextField('内容', max_length=1000)
     top = models.BooleanField('置顶', default=False)
@@ -19,9 +19,10 @@ class Announcement(models.Model):
     def __unicode__(self):
         return self.title
 
-class Download(models.Model):
+class File(models.Model):
+    name = models.CharField('文件标题',max_length=20)
     file = models.FileField('文件', upload_to=time.strftime("%b-%d", time.localtime())+'/')
-    description = models.CharField('文件说明',max_length=50)
+    description = models.CharField('文件说明',max_length=100)
     upload_time = models.DateTimeField('上传时间', auto_now_add=True)
     hits = models.PositiveIntegerField('下载量', default=0)
 
@@ -30,10 +31,10 @@ class Download(models.Model):
         verbose_name_plural = "文件"
 
     def __unicode__(self):
-        return self.file.name
+        return self.name
 
 #删除数据之后也删除文件
 def delete_file(sender, **kwargs):
     patch = kwargs['instance']
     os.remove(patch.file.path)
-post_delete.connect(delete_file, sender=Download)
+post_delete.connect(delete_file, sender=File)

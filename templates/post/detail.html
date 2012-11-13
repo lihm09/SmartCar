@@ -8,7 +8,7 @@
             {{ this_post.title }}
             <a class="btn btn-info" href="/post/">返回公告栏</a>
             {% if user.is_superuser %}
-                <a class="btn btn-danger" href="/manage/post/announcement/{{ this_post.id }}/">编辑</a>
+                <a class="btn btn-danger" href="/manage/post/post/{{ this_post.id }}/">编辑</a>
             {% endif %}
         </h1>
     <hr />
@@ -16,6 +16,6 @@
 
 {% block content %}
     <div class="content">
-        {{ this_post.content|markdown }}
+        {{ this_post.content|markdown|safe }}
     </div>
 {% endblock %}

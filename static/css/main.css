@@ -109,14 +109,6 @@ body{
     color: #ccccff;
 }
 
-.download .content{
-    display: block;
-    background-color: #dddddd;
-    -webkit-border-radius: 6px;
-        -moz-border-radius: 6px;
-              border-radius: 6px;
-    padding: 5px 5px 5px 5px;
-}
 
 #s{
     -webkit-transition-duration: 400ms;
@@ -128,10 +120,14 @@ body{
     -o-transition-duration: 400ms;
     -o-transition-property: width;
     -o-transition-timing-function: ease;
-    width: 56px;
+    width: 28px;
 }
 #s:focus{
-    width: 180px;
+    width: 120px;
+}
+
+.input-append select{
+    width: 66px;
 }
 
 @media (max-width: 512px){
