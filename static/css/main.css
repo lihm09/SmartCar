@@ -82,6 +82,7 @@ body{
     border-left: solid 10px #aaaaaa;
     margin-bottom: 10px;
 }
+
 .content{
     margin: 0 0 30px 0;
     background-color: #f5f5f5;
@@ -93,7 +94,7 @@ body{
 }
 
 .top .title{
-    border-left: solid 10px red;
+    border-left: solid 10px #800080;
 }
 .top h2 a{
     color: #800080;
@@ -101,6 +102,16 @@ body{
 .top h2 a:hover{
     color: #bb00bb;
 }
+.download .title{
+    border-left: solid 10px #008000;
+}
+.download h2 a{
+    color: #008000;
+}
+.download h2 a:hover{
+    color: #51a351;
+}
+
 
 .title .label a{
     color: #ffffff;

@@ -19,14 +19,10 @@ def detail(request,num):
         raise Http404
     this_post.hits+=1
     this_post.save()
-    return render(request, 'post/detail.html',{'this_post':this_post})
-
-def file(request,num):
     try:
-        this_file=File.objects.get(id=num)
+        this_file=this_post.file
     except ObjectDoesNotExist:
-        raise Http404
+        return render(request, 'post/detail.html',{'this_post':this_post})
     this_file.hits+=1
     this_file.save()
-
-    return redirect(MEDIA_URL+this_file.file.name)
+    return redirect(MEDIA_URL+this_post.file.file.name)

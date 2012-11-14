@@ -5,77 +5,77 @@
 {% block content_title %}{% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="span8">
-            <hr/>
-            <h1>公告栏
-                {% if user.is_superuser %}
-                    <a class="btn btn-danger" href="/manage/post/post/add/">发布公告</a>
-                {% endif %}
-            </h1>
-            {% if top %}
-                {% for item in top %}
-                    <div class="article top">
-                        <div class="title">
-                            <h2>
-                                <a href="/post/{{ item.id }}/">{{ item.title }}</a>
-                                <i class="icon-arrow-up"></i>
-                            </h2>
-                            <span class="label label-inverse">{{ item.post_time }}</span>
-                            <span class="label label-info">点击量：{{ item.hits }}</span>
-                            {% if user.is_superuser %}
-                                <span class="label label-important">
-                                    <a href="/manage/post/post/{{ item.id }}/">编辑</a>
-                                </span>
-                            {% endif %}
-                        </div>
-                    </div>
-                {% endfor %}
-            {% endif %}
-
-            {% if rest %}
-                {% for item in rest %}
-                    <div class="article">
-                        <div class="title">
-                            <h2>
-                                <a href="/post/{{ item.id }}/">{{ item.title }}</a>
-                            </h2>
-                            <span class="label label-inverse">{{ item.post_time|date:"Y/m/d H:i" }}</span>
-                            <span class="label label-info">点击量：{{ item.hits }}</span>
-                            {% if user.is_superuser %}
-                                <span class="label label-important">
-                                    <a href="/manage/post/post/{{ item.id }}/">编辑</a>
-                                </span>
-                            {% endif %}
-                        </div>
-                    </div>
-                {% endfor %}
-            {% endif %}
-        </div>
-        <div class="span4">
-            <hr/>
-            <h1>资料下载
-                {% if user.is_superuser %}
-                    <a class="btn btn-danger" href="/manage/post/file/add/">添加文件</a>
-                {% endif %}
-            </h1>
-        {% if file %}
-            {% for item in file %}
-                <div class="article">
+    <hr/>
+    <h1>公告栏
+        {% if user.is_superuser %}
+            <a class="btn btn-danger" href="/manage/post/post/add/">发布公告</a>
+        {% endif %}
+    </h1>
+    {% if top %}
+        {% for item in top %}
+            <div class="{% if item.file %}download{% endif %} article top">
                 <div class="title">
-                    <h2><a href="/post/file/{{ item.id }}" title="{{ item.description }}">{{ item.name }}</a></h2>
-                    <span class="label label-inverse">{{ item.upload_time|date:"Y/m/d H:i" }}</span>
-                    <span class="label label-success">{{ item.file.size|filesizeformat }}</span>
-                    <span class="label label-info">下载量：{{ item.hits }}</span>
+                    <h2>
+                        {% if item.file %}
+                            <a title="点击下载" class="t" href="/post/{{ item.id }}/">{{ item.title }}</a>
+                            <a title="{{ item.title }}" data-content="{{ item.content }}" class="btn" href="javascript:;">文件说明</a>
+                        {% else %}
+                            <a title="点击查看详情" class="t" href="/post/{{ item.id }}/">{{ item.title }}</a>
+                        {% endif %}
+                        <i title="置顶" class="icon-arrow-up"></i>
+                    </h2>
+                    <span class="label label-inverse">{{ item.post_time|date:"Y/m/d H:i" }}</span>
+                    {% if item.file %}
+                        <span class="label label-info">下载量：{{ item.file.hits }}</span>
+                        <span class="label label-success">{{ item.file.file.size|filesizeformat }}</span>
+                    {% else %}
+                        <span class="label label-info">点击量：{{ item.hits }}</span>
+                    {% endif %}
                     {% if user.is_superuser %}
                         <span class="label label-important">
-                                    <a href="/manage/post/file/{{ item.id }}/">编辑</a>
-                                </span>
+                            <a href="/manage/post/post/{{ item.id }}/">编辑</a>
+                        </span>
                     {% endif %}
                 </div>
+            </div>
+        {% endfor %}
+        <hr/>
+    {% endif %}
+    {% if rest %}
+        {% for item in rest %}
+            <div class="{% if item.file %}download{% endif %} article">
+                <div class="title">
+                    <h2>
+                        {% if item.file %}
+                            <a title="点击下载" class="t" href="/post/{{ item.id }}/">{{ item.title }}</a>
+                            <a title="{{ item.title }}" data-content="{{ item.content }}" class="btn" href="javascript:;">文件说明</a>
+                        {% else %}
+                            <a title="点击查看详情" class="t" href="/post/{{ item.id }}/">{{ item.title }}</a>
+                        {% endif %}
+                    </h2>
+                    <span class="label label-inverse">{{ item.post_time|date:"Y/m/d H:i" }}</span>
+                    {% if item.file %}
+                        <span class="label label-info">下载量：{{ item.file.hits }}</span>
+                        <span class="label label-success">{{ item.file.file.size|filesizeformat }}</span>
+                    {% else %}
+                        <span class="label label-info">点击量：{{ item.hits }}</span>
+                    {% endif %}
+                    {% if user.is_superuser %}
+                        <span class="label label-important">
+                            <a href="/manage/post/post/{{ item.id }}/">编辑</a>
+                        </span>
+                    {% endif %}
                 </div>
-            {% endfor %}
-        {% endif %}
-        </div>
-    </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}
+
+{% block extrascript %}
+    <script>
+        $('.title h2 .btn').popover();
+        $('.title h2 i').tooltip({placement:'top'});
+        $('.title h2 .t').tooltip({placement:'top'});
+    </script>
 {% endblock %}
