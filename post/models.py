@@ -8,7 +8,6 @@ import time
 class File(models.Model):
     file = models.FileField('文件', upload_to=time.strftime("%b-%d", time.localtime())+'/')
     upload_time = models.DateTimeField('上传时间', auto_now_add=True)
-    hits = models.PositiveIntegerField('下载量', default=0)
 
     class Meta:
         verbose_name = "文件"
@@ -22,7 +21,7 @@ class Post(models.Model):
     title = models.CharField('标题', max_length=50)
     content = models.TextField('内容', max_length=1000)
     top = models.BooleanField('置顶', default=False)
-    file = models.OneToOneField(File,verbose_name='附件',blank=True)
+    file = models.OneToOneField(File,verbose_name='附件',null=True,blank=True)
     post_time = models.DateTimeField('发布时间', auto_now_add=True)
     hits = models.PositiveIntegerField('点击量', default=0)
 

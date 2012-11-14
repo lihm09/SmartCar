@@ -26,7 +26,7 @@
                     </h2>
                     <span class="label label-inverse">{{ item.post_time|date:"Y/m/d H:i" }}</span>
                     {% if item.file %}
-                        <span class="label label-info">下载量：{{ item.file.hits }}</span>
+                        <span class="label label-info">下载量：{{ item.hits }}</span>
                         <span class="label label-success">{{ item.file.file.size|filesizeformat }}</span>
                     {% else %}
                         <span class="label label-info">点击量：{{ item.hits }}</span>
@@ -55,7 +55,7 @@
                     </h2>
                     <span class="label label-inverse">{{ item.post_time|date:"Y/m/d H:i" }}</span>
                     {% if item.file %}
-                        <span class="label label-info">下载量：{{ item.file.hits }}</span>
+                        <span class="label label-info">下载量：{{ item.hits }}</span>
                         <span class="label label-success">{{ item.file.file.size|filesizeformat }}</span>
                     {% else %}
                         <span class="label label-info">点击量：{{ item.hits }}</span>

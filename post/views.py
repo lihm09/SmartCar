@@ -9,8 +9,7 @@ from SmartCar.settings import MEDIA_URL
 def index(request):
     top=Post.objects.filter(top=True).order_by('-post_time')
     rest=Post.objects.filter(top=False).order_by('-post_time')
-    file=File.objects.all().order_by('-upload_time')
-    return render(request, 'post/index.html',{'top':top,'rest':rest,'file':file})
+    return render(request, 'post/index.html',{'top':top,'rest':rest})
 
 def detail(request,num):
     try:
@@ -19,10 +18,6 @@ def detail(request,num):
         raise Http404
     this_post.hits+=1
     this_post.save()
-    try:
-        this_file=this_post.file
-    except ObjectDoesNotExist:
-        return render(request, 'post/detail.html',{'this_post':this_post})
-    this_file.hits+=1
-    this_file.save()
-    return redirect(MEDIA_URL+this_post.file.file.name)
+    if this_post.file:
+        return redirect(MEDIA_URL+this_post.file.file.name)
+    return render(request, 'post/detail.html',{'this_post':this_post})

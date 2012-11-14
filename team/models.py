@@ -15,7 +15,7 @@ class Team(models.Model):
     car_taken = models.BooleanField('已经取车',default=False)
     status = models.CharField('队伍状态', max_length=1, choices=STATUS_CHOICES, default='a')
     num = models.IntegerField('队伍人数',default=0)
-    create_time = models.DateTimeField('创建时间',auto_now=True)
+    create_time = models.DateTimeField('创建时间',auto_now_add=True)
 
     class Meta:
         verbose_name = "队伍"
