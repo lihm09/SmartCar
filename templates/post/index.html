@@ -2,15 +2,25 @@
 
 {% block title %}公告栏{% endblock %}
 
-{% block content_title %}{% endblock %}
-
-{% block content %}
+{% block content_title %}
     <hr/>
     <h1>公告栏
         {% if user.is_superuser %}
             <a class="btn btn-danger" href="/manage/post/post/add/">发布公告</a>
         {% endif %}
     </h1>
+{% endblock %}
+
+{% block content %}
+    <div class="pull-right">
+        <form class="form-search">
+            <div class="input-append">
+                <input type="text" name="s" id="s" class="search-query">
+                <input type="button" class="btn" value="搜索">
+            </div>
+        </form>
+    </div>
+    <hr/>
     {% if top %}
         {% for item in top %}
             <div class="{% if item.file %}download{% endif %} article top">
@@ -68,6 +78,8 @@
                 </div>
             </div>
         {% endfor %}
+        {% else %}
+        <h3>咦？什么都没有找到哦……</h3>
     {% endif %}
 
 {% endblock %}

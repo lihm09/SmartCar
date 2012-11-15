@@ -131,7 +131,7 @@ body{
     -o-transition-duration: 400ms;
     -o-transition-property: width;
     -o-transition-timing-function: ease;
-    width: 28px;
+    width: 60px;
 }
 #s:focus{
     width: 120px;

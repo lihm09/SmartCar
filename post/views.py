@@ -7,6 +7,10 @@ from post.settings import POST_PER_PAGE
 from SmartCar.settings import MEDIA_URL
 
 def index(request):
+    s=request.GET.get('s')
+    if s:
+        rest=Post.objects.filter(content__contains=s).order_by('-post_time')
+        return render(request, 'post/search.html',{'s':s,'rest':rest})
     top=Post.objects.filter(top=True).order_by('-post_time')
     rest=Post.objects.filter(top=False).order_by('-post_time')
     return render(request, 'post/index.html',{'top':top,'rest':rest})
