@@ -2,7 +2,7 @@
 
 from django.core.mail import EmailMessage
 from smtplib import SMTPException
-from SmartCar.settings import *
+from SmartCar.settings import SITE_NAME,ORG,EMAIL_HOST_USER
 from django.template import loader, Context
 
 import random, string
@@ -21,7 +21,7 @@ def send_activation_email(email,username,code):
 
     try:
         activation_msg.send(fail_silently=False)
-    except SMTPException:
+    except:
         return False
     return True
 

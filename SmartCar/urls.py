@@ -4,11 +4,9 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', 'SmartCar.views.index'),
-    url(r'^about/$', 'SmartCar.views.about'),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', 'SmartCar.views.index',name='home'),
+    url(r'^about/$', 'SmartCar.views.about',name='about'),
+    url(r'^manage/', include(admin.site.urls)),
     url(r'^accounts/',include('accounts.urls')),
-
-    url(r'^media/(.*)$', 'django.views.static.serve',{'document_root':'./media/'}),
-
+    url(r'^post/', include('post.urls')),
 )

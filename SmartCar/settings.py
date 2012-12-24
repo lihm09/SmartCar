@@ -9,8 +9,13 @@ COMPETITION_NAME='第七届智能车竞赛'
 ORG='智能车竞赛组委会'
 #报名截止
 SIGNUP_ACCESS=True
-#队伍最大人数
-TEAM_MAX_MEM=4
+
+#EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+EMAIL_USE_TLS = False
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'depsast@thudep.org'
+EMAIL_HOST_PASSWORD = ''
 
 
 DEBUG = True
@@ -58,12 +63,12 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/static/static.lawrence.com/static/"
-MEDIA_ROOT = (DIRNAME+'/media/').replace('\\','/')
+MEDIA_ROOT = (DIRNAME+'/static/upload/').replace('\\','/')
 
 # URL that handles the static served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://static.lawrence.com/static/", "http://example.com/static/"
-MEDIA_URL = '/media/'
+MEDIA_URL = '/static/upload/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -111,9 +116,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 #    'django.contrib.messages.context_processors.messages',
 #    'django.core.context_processors.debug',
 #    'django.core.context_processors.i18n',
-#    'django.core.context_processors.static',
-#    'django.core.context_processors.static',
-#    'django.core.context_processors.csrf',
+    'django.core.context_processors.static',
+    'django.core.context_processors.csrf',
 #    'django.core.context_processors.request',
     'SmartCar.context_processors.siteinfo'
 )
@@ -138,13 +142,6 @@ TEMPLATE_DIRS = (
 )
 
 
-#EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 25
-EMAIL_HOST_USER = 'everpcpcpc@gmail.com'
-EMAIL_HOST_PASSWORD = '07165980218'
-
 AUTH_PROFILE_MODULE='accounts.MyProfile'
 
 LOGIN_REDIRECT_URL = '/'
@@ -158,9 +155,12 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.markup',
     'django.contrib.admin',
 
     'accounts',
+    'post',
+    'team',
 )
 
 

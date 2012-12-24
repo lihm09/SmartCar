@@ -1,0 +1,45 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}激活{% endblock %}
+
+
+{% block content %}
+    <div class="sign-form-container">
+        <div class="hero-unit sign-form">
+            <h2 class="title">请补全信息</h2>
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                <div class="form-row" title="{{ form.real_name.help_text }}">
+                    <label for="id_real_name" class="required">{{ form.real_name.label }}</label>{{ form.real_name }} {{ form.real_name.errors }}
+                </div>
+                <div class="form-row" title="{{ form.mobile.help_text }}">
+                    <label for="id_mobile" class="required">{{ form.mobile.label }}</label>{{ form.mobile }} {{ form.mobile.errors }}
+                </div>
+                <div class="form-row">
+                    <label for="" class="required">{{ form.gender.label }}</label>{{ form.gender }} {{ form.gender.errors }}
+                </div>
+                <div class="form-row">
+                    <label for="" class="required">{{ form.department.label }}</label>{{ form.department }} {{ form.department.errors }}
+                </div>
+                <div class="form-row" title="{{ form.class_name.help_text }}">
+                    <label for="id_class_name" class="required">{{ form.class_name.label }}</label>{{ form.class_name }} {{ form.class_name.errors }}
+                </div>
+                <div class="form-row" title="{{ form.dormitory.help_text }}">
+                    <label for="id_dormitory" class="required">{{ form.dormitory.label }}</label>{{ form.dormitory }} {{ form.dormitory.errors }}
+                </div>
+                <div class="submit-row">
+                    <input type="submit" value="登陆" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block extrascript %}
+    <script type="text/javascript">
+        $('#id_real_name').focus();
+        $('.form-row').tooltip({delay: { show: 300, hide: 300 },placement:'right'});
+    </script>
+{% endblock %}
