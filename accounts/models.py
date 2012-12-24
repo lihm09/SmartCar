@@ -22,19 +22,17 @@ class ActivationCode(models.Model):
 class MyProfile(models.Model):
     user = models.OneToOneField(User,unique=True,verbose_name='用户')
     #team = models.ForeignField(verbose_name=('队伍'))
-    mobile = models.CharField('手机',unique=True, max_length=11)
+    real_name = models.CharField('姓名',max_length=10)
+    mobile = models.CharField('手机', max_length=11)
     gender = models.CharField('性别', max_length=1, choices=GENDER_CHOICES, default='M')
     department = models.CharField('院系',max_length=1,choices=DEPARTMENT_CHOICES, default='a')
-    class_name = models.CharField('班级',max_length=5)
-    dormitory = models.CharField('宿舍',max_length=10)
+    class_name = models.CharField('班级',max_length=6)
+    dormitory = models.CharField('宿舍',max_length=12)
 
     class Meta:
         verbose_name = "用户资料"
         verbose_name_plural = "用户资料"
 
-    def __str__(self):
-        if self.user.get_full_name():
-            return self.user.get_full_name()
-        else:
-            return self.user.username
+    def __unicode__(self):
+        return self.real_name
 

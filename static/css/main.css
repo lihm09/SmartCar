@@ -3,7 +3,22 @@ body{
     text-shadow: 1.5px 1.5px 1.5px #aaa;
     padding-top: 60px;
     padding-bottom: 40px;
-    }
+}
+
+.hero-unit{
+    background-color: rgba(238,238,238,0.6);
+}
+.navbar-inverse .navbar-inner{
+    background-color: rgba(27,27,27,0.6);
+    background-image: -moz-linear-gradient(top, rgba(34,34,34,0.6), rgba(17,17,17,0.6));
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(34,34,34,0.6)), to(rgba(17,17,17,0.6)));
+    background-image: -webkit-linear-gradient(top, rgba(34,34,34,0.6), rgba(17,17,17,0.6));
+    background-image: -o-linear-gradient(top, rgba(34,34,34,0.6), rgba(17,17,17,0.6));
+    background-image: linear-gradient(to bottom, rgba(34,34,34,0.6), rgba(17,17,17,0.6));
+    background-repeat: repeat-x;
+    border-color: red;
+    border-bottom-width: 2px;
+}
 
 .brand{
     text-shadow: none;
@@ -13,17 +28,17 @@ body{
     text-align: center;
     padding: 10px 0 10px 0;
     margin-bottom: 30px;
-    margin-top: 30px;
-    background-color: #eeeeee;
+    margin-top: 10px;
+    background-color: rgba(238,238,238,0.6);
     -webkit-border-radius: 6px;
        -moz-border-radius: 6px;
-            border-radius: 6px;
+             border-radius: 6px;
+    border-top: solid 10px #aaaaaa;
 }
 
 .about .span8{
-     padding: 10px 0 10px 0;
-     margin-bottom: 30px;
-     margin-top: 10px;
+    padding: 10px 0 10px 0;
+    margin-bottom: 30px;
  }
 
 .errorlist{
@@ -42,12 +57,12 @@ body{
 }
 
 .sign-form-container{
-    width:500px;
-    margin: 50px auto;
+    margin: auto;
 }
 .sign-form{
-    width:263px;
-    padding:20px 20px 20px 50px;
+    min-width: 200px;
+    max-width: 240px;
+    padding:auto;
     margin:0 auto 0;
 }
 .sign-form .title{
@@ -55,4 +70,90 @@ body{
 }
 .sign-form form{
     margin-bottom: 10px;
+}
+
+.article .title{
+    display: block;
+    background-color: #dddddd;
+    padding: 5px 5px 10px 20px;
+    -webkit-border-radius: 6px;
+       -moz-border-radius: 6px;
+             border-radius: 6px;
+    border-left: solid 10px #aaaaaa;
+    margin-bottom: 10px;
+}
+
+.content{
+    margin: 0 0 30px 0;
+    background-color: #f5f5f5;
+    padding: 5px 5px 5px 5px;
+    -webkit-border-radius: 6px;
+       -moz-border-radius: 6px;
+             border-radius: 6px;
+    border: solid 5px #dddddd;
+}
+
+.top .title{
+    border-left: solid 10px #800080;
+}
+.top h2 a{
+    color: #800080;
+}
+.top h2 a:hover{
+    color: #bb00bb;
+}
+.download .title{
+    border-left: solid 10px #008000;
+}
+.download h2 a{
+    color: #008000;
+}
+.download h2 a:hover{
+    color: #51a351;
+}
+
+
+.title .label a{
+    color: #ffffff;
+}
+.title .label a:hover{
+    color: #ccccff;
+}
+
+
+#s{
+    -webkit-transition-duration: 400ms;
+    -webkit-transition-property: width;
+    -webkit-transition-timing-function: ease;
+    -moz-transition-duration: 400ms;
+    -moz-transition-property: width;
+    -moz-transition-timing-function: ease;
+    -o-transition-duration: 400ms;
+    -o-transition-property: width;
+    -o-transition-timing-function: ease;
+    width: 60px;
+}
+#s:focus{
+    width: 120px;
+}
+
+.input-append select{
+    width: 66px;
+}
+
+@media (max-width: 512px){
+
+    .sign-form-container .hero-unit{
+        padding: 0;
+        margin-bottom: 25px;
+        background-color: transparent;
+    }
+
+    .hero-unit h1{
+        font-size: 40px;
+    }
+
+    .lead{
+        font-size: 16px;
+    }
 }

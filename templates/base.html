@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html" xml:lang="cn" lang="cn">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
 <head>
     <title>{{ site_name }} : {% block title %}{% endblock %}</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap-responsive.css">
-    <link rel="shortcut icon" href="/static/img/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/main.css">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap-responsive.css">
+    <link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico">
     <!--[if lt IE 9]>
-      <script src="/static/js/html5.js"></script>
+      <script src="{{ STATIC_URL }}js/html5.js"></script>
     <![endif]-->
     <!--[if IE 6]>
-    <link href="/static/css/ie6.min.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/ie6.min.css" rel="stylesheet">
     <![endif]-->
     {% block extrahead %}{% endblock %}
 </head>
@@ -31,11 +31,11 @@
             <a class="brand" href="/">{{ site_name }}</a>
             <div class="nav-collapse collapse">
                 <ul class="nav">
-                    <li id="home" class="active"><a href="/"><i class="icon-home icon-white"></i> 首页</a></li>
-                    <li id="post"><a href="/post/"><i class="icon-file icon-white"></i> 公告栏</a></li>
+                    <li id="home" class="active"><a href="{% url home %}"><i class="icon-home icon-white"></i> 首页</a></li>
+                    <li id="post"><a href="{% url post_index %}"><i class="icon-file icon-white"></i> 公告栏</a></li>
                     <li id="team"><a href="/team/"><i class="icon-flag icon-white"></i> 参赛队伍</a></li>
                     <li id="discuss"><a href="/discuss/"><i class="icon-comment icon-white"></i> 吐槽</a></li>
-                    <li id="about"><a href="/about/"><i class="icon-info-sign icon-white"></i> 关于</a></li>
+                    <li id="about"><a href="{% url about %}"><i class="icon-info-sign icon-white"></i> 关于</a></li>
                 </ul>
 
                 {% if user.is_authenticated %}
@@ -47,18 +47,18 @@
                     {% if user.is_authenticated %}
                         <div class="btn-group">
                             <a class="btn btn-info dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i>
-                                {% firstof user.get_full_name user.username %} <span class="caret"></span></a>
+                                {% firstof user.get_profile.real_name user.username %} <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href=""><i class="icon-home"></i> 详细资料</a></li>
+                                <li><a href=""><i class="icon-th-list"></i> 详细资料</a></li>
                                 <li><a href=""><i class="icon-pencil"></i> 修改资料</a></li>
                                 <li><a href=""><i class="icon-lock"></i> 修改密码</a></li>
                                 <li><a href=""><i class="icon-envelope"></i> 修改邮箱</a></li>
                                 {% if user.is_staff %}
                                     <li class="divider"></li>
-                                    <li><a href="/admin/"><i class="icon-wrench"></i> 站点管理</a></li>
+                                    <li><a href="/manage/"><i class="icon-wrench"></i> 站点管理</a></li>
                                 {% endif %}
                                 <li class="divider"></li>
-                                <li><a href="{% url signout %}"><i class="icon-ban-circle"></i> 注销</a></li>
+                                <li><a href="{% url signout %}"><i class="icon-off"></i> 注销</a></li>
                             </ul>
                         </div>
                     {% else %}
@@ -82,7 +82,6 @@
       </div>
       <![endif]-->
     {% block content_title %}{% endblock %}
-    <hr />
     {% block content %}{% endblock %}
 
     <hr />
@@ -94,8 +93,8 @@
 </div>
 
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="/static/js/jquery.min.js"></script>
-<script src="/static/js/bootstrap.min.js"></script>
+<script src="{{ STATIC_URL }}js/jquery.min.js"></script>
+<script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
 {% block extrafooter %}{% endblock %}
 
 </body>

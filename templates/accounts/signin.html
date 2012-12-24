@@ -10,7 +10,8 @@
             {% csrf_token %}
             {{ form.non_field_errors }}
             <div class="form-row">
-                <label for="id_username" class="required">{{ form.username.label }}</label>{{ form.username }} {{ form.username.errors }}            </div>
+                <label for="id_username" class="required">{{ form.username.label }}</label>{{ form.username }} {{ form.username.errors }}
+            </div>
             <div class="form-row">
                 <label for="id_password" class="required">{{ form.password.label }}</label>{{ form.password }} {{ form.password.errors }}
                 <input type="hidden" name="next" value="{{ next }}" />
@@ -22,8 +23,10 @@
     </div>
 </div>
 
+{% endblock %}
+
+{% block extrascript %}
     <script type="text/javascript">
         $('#id_username').focus();
     </script>
 {% endblock %}
-

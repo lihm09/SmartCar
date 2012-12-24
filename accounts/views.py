@@ -5,13 +5,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import auth
 
-from accounts.forms import signin_form, signup_form
-from django import forms
-from SmartCar.settings import *
-
-
-def index(request):
-    pass
+from accounts.forms import signin_form, signup_form, confirm_form
+from accounts.models import ActivationCode
+from SmartCar.settings import LOGIN_REDIRECT_URL,SIGNUP_ACCESS
 
 
 #登陆
@@ -33,12 +29,11 @@ def signin(request):
             if request.session.test_cookie_worked():
                 request.session.delete_test_cookie()
             return redirect(redirect_to)
-        else:
-            return render(request, 'accounts/signin.html',{'form':form})
     else:
         form=signin_form()
         request.session.set_test_cookie()
-        return render(request, 'accounts/signin.html',{'form':form})
+
+    return render(request, 'accounts/signin.html',{'form':form,'next':redirect_to})
 
 #注销
 def signout(request):
@@ -54,20 +49,34 @@ def signup(request):
     elif request.method == 'POST':
         form=signup_form(data=request.POST)
         if form.is_valid():
-            try:
-                form.sav()
-            except forms.ValidationError:
-                return render(request, 'accounts/signup.html',{'form':form})
             return render(request, 'accounts/sendmail_succeed.html',{'form':form})
-        else:
-            return render(request, 'accounts/signup.html',{'form':form})
     else:
         form=signup_form()
-        return render(request,'accounts/signup.html',{'form':form})
+
+    return render(request,'accounts/signup.html',{'form':form})
 
 
-def confirm(request,code):
-    pass
+def confirm(request,code=None):
+    if request.user.is_authenticated():
+        return redirect('/')
+    else:
+        try:
+            activation_cache=ActivationCode.objects.get(activation_code=code)
+        except ActivationCode.DoesNotExist:
+            return render(request,'accounts/confirm_invalid.html')
+
+        if request.method == 'POST':
+            form=confirm_form(data=request.POST)
+            if form.is_valid():
+                form.sav(user=activation_cache.user)
+                activation_cache.user.is_active=True
+                activation_cache.user.save()
+                activation_cache.delete()
+                return render(request,'accounts/confirm_succeed.html')
+        else:
+            form = confirm_form
+
+        return render(request,'accounts/confirm.html',{'form':form})
 
 
 
