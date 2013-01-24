@@ -1,0 +1,23 @@
+{% extends 'discuss/base.html' %}
+{% load markup %}
+
+{% block title %}{{ this_discuss.title }}{% endblock %}
+
+{% block content_title %}
+    <h1>
+        {{ this_discuss.title }}
+        <a class="btn btn-info" href="/discuss/">返回吐槽大厅</a>
+        {% if user.is_superuser %}
+            <a class="btn btn-danger" href="/manage/discuss/discuss/{{ this_discuss.id }}/">编辑</a>
+        {% endif %}
+    </h1>
+    <span class="label label-inverse">{{ this_discuss.post_time|date:"Y/m/d H:i" }}</span>
+    <span class="label label-info">围观群众：{{ this_discuss.audience }}</span>
+    <hr />
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        {{ this_discuss.content|markdown|safe }}
+    </div>
+{% endblock %}

@@ -161,6 +161,7 @@ INSTALLED_APPS = (
     'accounts',
     'post',
     'team',
+    'discuss',
 )
 
 

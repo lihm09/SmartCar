@@ -1,0 +1,70 @@
+{% extends 'discuss/base.html' %}
+
+{% block title %}吐槽大厅{% endblock %}
+
+{% block content_title %}
+    <hr/>
+    <h1>吐槽大厅
+        {% if user.is_superuser %}
+            <a class="btn btn-danger" href="/manage/discuss/discuss/add/">开始吐槽</a>
+        {% endif %}
+    </h1>
+{% endblock %}
+
+{% block content %}
+    <div class="pull-right">
+        <form class="form-search">
+            <div class="input-append">
+                <input type="text" name="s" id="s" class="search-query">
+                <input type="button" class="btn" value="搜索">
+            </div>
+        </form>
+    </div>
+    <hr/>
+    {% if top %}
+        {% for item in top %}
+            <div class="title">
+                <h2>
+                    <a title="点击查看详情" class="t" href="/discuss/{{ item.id }}/">{{ item.title }}</a>
+                    <i title="置顶" class="icon-arrow-up"></i>
+                </h2>
+                <span class="label label-inverse">{{ item.post_time|date:"Y/m/d H:i" }}</span>
+                <span class="label label-info">围观群众：{{ item.audience }}</span>
+                {% if user.is_superuser %}
+                    <span class="label label-important">
+                        <a href="/manage/discuss/discuss/{{ item.id }}/">编辑</a>
+                    </span>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <hr/>
+    {% endif %}
+
+    {% if rest %}
+        {% for item in rest %}
+            <div class="title">
+                <h2>
+                    <a title="点击查看详情" class="t" href="/discuss/{{ item.id }}/">{{ item.title }}</a>
+                </h2>
+                <span class="label label-inverse">{{ item.post_time|date:"Y/m/d H:i" }}</span>
+                <span class="label label-info">围观群众：{{ item.audience }}</span>
+                {% if user.is_superuser %}
+                    <span class="label label-important">
+                        <a href="/manage/discuss/discuss/{{ item.id }}/">编辑</a>
+                    </span>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <h3>咦？什么都没有找到哦……</h3>
+    {% endif %}
+
+{% endblock %}
+
+{% block extrascript %}
+    <script>
+        $('.title h2 .btn').popover();
+        $('.title h2 i').tooltip({placement:'top'});
+        $('.title h2 .t').tooltip({placement:'top'});
+    </script>
+{% endblock %}
